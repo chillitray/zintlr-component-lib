@@ -1,7 +1,7 @@
 import React from "react";
 
-const Button = (props) => {
+const ZCustomButton = (props) => {
   return <button >{props.label}</button>;
 };
 
-export default Button;
+export default ZCustomButton;

@@ -1,1 +1,1 @@
-export * from './components';
+export { default as ZCustomButton } from "./components/ZCustomButton.jsx";
