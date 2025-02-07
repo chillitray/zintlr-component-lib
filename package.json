@@ -15,6 +15,13 @@
    "react": ">=17.0.2 <19",
    "react-dom": ">=17.0.2 <19"
   },
+  "keywords": [
+  "zintlr",
+  "zintlr-ui",
+  "zintlr-custom-button",
+  "react-component",
+  "ui-library"
+],
   "devDependencies": {
     "@babel/core": "^7.26.7",
     "@babel/preset-react": "^7.26.3",
@@ -27,7 +34,8 @@
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "exports": {
     ".": {
