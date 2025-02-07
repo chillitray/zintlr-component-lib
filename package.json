@@ -1,0 +1,18 @@
+{
+  "name": "zintlr-component-lib",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Internal UI component library for Zintlr",
+  "author": "Sandeep (Zintlr)",
+  "license": "MIT",
+  "main": "src/index.jsx",
+  "module": "src/index.jsx",
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com:sandeep-zintlr/zintlr-component-lib.git"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0"
+  }
+}
