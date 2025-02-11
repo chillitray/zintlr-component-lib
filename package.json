@@ -1,32 +1,44 @@
 {
   "name": "zintlr-component-lib",
-  "private": true,
+  "private": false,
   "version": "1.0.0",
   "description": "Internal UI component library for Zintlr",
   "author": "Sandeep (Zintlr)",
   "license": "MIT",
-  "main": "lib/index.js",
-  "module": "lib/index.js",
-  "source": "src/index.js",
-  "sideEffects": false,
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "exports": {
+    "import": "./dist/index.esm.js",
+    "require": "./dist/index.cjs.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com:sandeep-zintlr/zintlr-component-lib.git"
   },
   "peerDependencies": {
-    "react": ">=18.0.0"
+    "next": ">=13.0.0",
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0",
+    "@reduxjs/toolkit": ">=2.5.1",
+    "react-redux": ">=9.2.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.26.4",
     "@babel/core": "^7.26.8",
-    "@babel/preset-react": "^7.26.3"
+    "@babel/preset-env": "^7.26.8",
+    "@babel/preset-react": "^7.26.3",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^24.1.0",
+    "@rollup/plugin-node-resolve": "^15.3.1",
+    "@rollup/plugin-terser": "^0.4.4",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.2",
+    "rollup": "^3.29.5",
+    "rollup-plugin-postcss": "^4.0.2",
+    "tailwindcss": "^4.0.6"
   },
   "scripts": {
-    "build": "babel src --out-dir lib --extensions \".js,.jsx\""
+    "build": "rollup -c",
+    "dev": "rollup -c -w"
   },
-  "dependencies": {
-    "@reduxjs/toolkit": "^2.5.1",
-    "react-redux": "^9.2.0",
-    "redux": "^5.0.1"
-  }
+  "type": "commonjs"
 }

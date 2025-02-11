@@ -1,9 +1,19 @@
-import React from 'react'
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { toggle } from "../store";
 
 const ZButton = () => {
-  return (
-    <div>Hello Bro You did it</div>
-  )
-}
+  const dispatch = useDispatch();
+  const clicked = useSelector((state) => state.button.clicked);
 
-export default ZButton
+  return (
+    <button
+      onClick={() => dispatch(toggle())}
+      style={{ padding: "10px", background: clicked ? "green" : "gray" }}
+    >
+      {clicked ? "Clicked!" : "Click Me"}
+    </button>
+  );
+};
+
+export default ZButton;

@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import rootReducer from "./0-root-reducer";
+import buttonReducer from "./buttonSlice"; // ✅ Make sure this path is correct
 
 const store = configureStore({
-  reducer: rootReducer,
+  reducer: {
+    button: buttonReducer, // ✅ Ensure reducer is properly mapped
+  },
 });
 
-export default store;
+export default store; // ✅ Must be default export
