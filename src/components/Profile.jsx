@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setCountdownStart } from "../../store/profile/profileSlice";
-
+import { setCountdownStart } from "../store/profile/profileSlice";
 
 const Profile = () => {
   const clicked = useSelector((state) => state.profile.isLoggedIn);
