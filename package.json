@@ -22,5 +22,10 @@
   },
   "scripts": {
     "build": "babel src --out-dir lib"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.5.1",
+    "react-redux": "^9.2.0",
+    "redux": "^5.0.1"
   }
 }
