@@ -1,10 +1,9 @@
-import { createWrapper } from "next-redux-wrapper";
+import React from "react";
+import { Provider } from "react-redux";
 import store from "./store";
 
-const makeStore = () => store;
-/**
- * This code exports a wrapper for Next.js Redux store using next-redux-wrapper.
- */
-const wrapper = createWrapper(makeStore, { debug: true });
+const ReduxWrapper = ({ children }) => {
+  return <Provider store={store}>{children}</Provider>;
+};
 
-export default wrapper;
+export default ReduxWrapper;

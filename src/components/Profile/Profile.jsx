@@ -1,8 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setCountdownStart } from "zintlr-component-lib/lib/store/profile/profileSlice";
+import { setCountdownStart } from "../../store/profile/profileSlice";
+
 
 const Profile = () => {
-  const clicked = useSelector((state) => state.button.clicked);
+  const clicked = useSelector((state) => state.profile.isLoggedIn);
 
   const dispatch = useDispatch();
 
