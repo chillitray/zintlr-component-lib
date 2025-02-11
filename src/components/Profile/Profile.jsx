@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { setClicked } from "../redux/buttonSlice";
+import { setCountdownStart } from "zintlr-component-lib/lib/store/profile/profileSlice";
 
 const Profile = () => {
   const clicked = useSelector((state) => state.button.clicked);
@@ -7,7 +7,7 @@ const Profile = () => {
   const dispatch = useDispatch();
 
   return (
-    <button onClick={() => dispatch(setClicked(!clicked))}>
+    <button onClick={() => dispatch(setCountdownStart(!clicked))}>
       {clicked ? "Clicked" : "Click Me"}
     </button>
   );
