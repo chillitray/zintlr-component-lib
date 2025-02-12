@@ -13,8 +13,12 @@
     "type": "git",
     "url": "git+ssh://git@github.com:sandeep-zintlr/zintlr-component-lib.git"
   },
+  "type": "commonjs",
   "peerDependencies": {
-    "react": ">=18.0.0"
+    "@reduxjs/toolkit": "^2.5.1",
+    "react": ">=18.0.0",
+    "react-redux": "^9.2.0",
+    "redux": "^5.0.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.26.4",
@@ -22,11 +26,14 @@
     "@babel/preset-react": "^7.26.3"
   },
   "scripts": {
-    "build": "babel src --out-dir lib --extensions \".js,.jsx\""
+    "build": "babel src --out-dir lib --extensions \".js,.jsx\" && cp src/index.css lib/index.css"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.5.1",
     "react-redux": "^9.2.0",
-    "redux": "^5.0.1"
+    "redux": "^5.0.1",
+    "autoprefixer": "^10.4.7",
+    "tailwindcss": "^3.0.24",
+    "postcss": "^8.4.13"
   }
 }
