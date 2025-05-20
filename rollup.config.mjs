@@ -5,27 +5,44 @@ import babel from "@rollup/plugin-babel";
 import postcss from "rollup-plugin-postcss";
 
 export default {
-  input: "src/index.jsx", // Entry point of your application
-  output: {
-    file: "dist/bundle.js", // Output file
-    format: "esm", // Output format (esm for ES Modules)
-    sourcemap: true, // Generate sourcemaps for debugging
-  },
+  input: "src/index.js",
+  output: [
+    {
+      file: "dist/bundle.esm.js",
+      format: "esm",
+      sourcemap: true,
+    },
+    {
+      file: "dist/bundle.cjs.js",
+      format: "cjs",
+      sourcemap: true,
+    },
+  ],
   plugins: [
     resolve({
-      extensions: [".js", ".jsx"], // Resolve Node.js modules and JSX files
+      extensions: [".js", ".jsx"],
+      // Add this to properly resolve Next.js imports
+      preferBuiltins: true,
     }),
-    commonjs(), // Convert CommonJS modules to ES6
+    commonjs(),
     babel({
       presets: ["@babel/preset-env", "@babel/preset-react"],
       babelHelpers: "bundled",
-      exclude: "node_modules/**", // Exclude node_modules from transpilation
+      extensions: [".js", ".jsx"],
     }),
     postcss({
-      extract: true, // Extract CSS into a separate file
-      minimize: true, // Minify the CSS
+      extract: true,
+      minimize: true,
     }),
-    terser(), // Minify the output JavaScript
+    terser(),
   ],
-  external: ["react", "react-dom"], // Specify external dependencies
+  // Add all Next.js specific imports to external dependencies
+  external: [
+    "react",
+    "react-dom",
+    "next/link",
+    "next/image",
+    "next/router",
+    "next/head",
+  ],
 };
