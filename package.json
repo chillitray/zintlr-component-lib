@@ -4,7 +4,7 @@
   "description": "",
   "main": "dist/bundle.js",
   "module": "dist/bundle.js",
-  "types": "dist/index.d.js",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/bundle.js",
@@ -15,6 +15,8 @@
     "start": "rollup -c",
     "build": "npm run start"
   },
+  "sideEffects": false,
+  "files": ["dist"],
   "keywords": [],
   "author": "Zintlr Private Limited",
   "license": "ISC",
