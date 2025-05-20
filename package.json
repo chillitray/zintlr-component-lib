@@ -2,20 +2,16 @@
   "name": "zintlr-component-lib",
   "version": "1.0.0",
   "description": "React component library by Zintlr",
-  "main": "dist/bundle.cjs.js",
-  "module": "dist/bundle.esm.js",
-  "exports": {
+  "main": "dist/bundle.cjs.js",     
+  "module": "dist/bundle.esm.js",    
+ "exports": {
     ".": {
       "import": "./dist/bundle.esm.js",
-      "require": "./dist/bundle.cjs.js",
-      "default": "./dist/bundle.esm.js"
+      "require": "./dist/bundle.cjs.js"
     },
-    "./*": {
-      "import": "./dist/*.js",
-      "require": "./dist/*.js",
-      "default": "./dist/*.js"
-    }
+    "./*": "./src/*.jsx"
   },
+
   "scripts": {
     "clean": "rm -rf dist",
     "build": "npm run clean && rollup -c",

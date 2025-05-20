@@ -6,7 +6,7 @@ import postcss from "rollup-plugin-postcss";
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 
 export default {
-  input: "src/index.js",
+  input: "src/index.jsx",
   output: [
     {
       file: "dist/bundle.esm.js",
