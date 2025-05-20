@@ -7,14 +7,19 @@
   "exports": {
     ".": {
       "import": "./dist/bundle.esm.js",
-      "require": "./dist/bundle.cjs.js"
+      "require": "./dist/bundle.cjs.js",
+      "default": "./dist/bundle.esm.js"
     },
-    "./*": "./dist/*"
+    "./*": {
+      "import": "./dist/*.js",
+      "require": "./dist/*.js",
+      "default": "./dist/*.js"
+    }
   },
   "scripts": {
-    "start": "rollup -c -w",
-    "build": "rollup -c",
-    "prepublishOnly": "npm run build"
+    "clean": "rm -rf dist",
+    "build": "npm run clean && rollup -c",
+    "watch": "rollup -c -w"
   },
   "sideEffects": false,
   "files": [

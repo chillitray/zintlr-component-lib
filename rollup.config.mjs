@@ -3,6 +3,7 @@ import commonjs from "@rollup/plugin-commonjs";
 import terser from "@rollup/plugin-terser";
 import babel from "@rollup/plugin-babel";
 import postcss from "rollup-plugin-postcss";
+import { nodeResolve } from '@rollup/plugin-node-resolve';
 
 export default {
   input: "src/index.js",
@@ -21,6 +22,7 @@ export default {
   plugins: [
     resolve({
       extensions: [".js", ".jsx"],
+      exportConditions: ['node', 'import', 'require', 'default'],
       // Add this to properly resolve Next.js imports
       preferBuiltins: true,
     }),
