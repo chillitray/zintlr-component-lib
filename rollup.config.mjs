@@ -3,7 +3,7 @@ import commonjs from "@rollup/plugin-commonjs";
 import terser from "@rollup/plugin-terser";
 import babel from "@rollup/plugin-babel";
 import postcss from "rollup-plugin-postcss";
-import { nodeResolve } from '@rollup/plugin-node-resolve';
+import json from '@rollup/plugin-json'; // Add this line
 
 export default {
   input: "src/index.jsx",
@@ -20,6 +20,7 @@ export default {
     },
   ],
   plugins: [
+    json(), // Add this before other plugins
     resolve({
       extensions: [".js", ".jsx"],
       exportConditions: ['node', 'import', 'require', 'default'],
