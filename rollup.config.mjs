@@ -7,7 +7,7 @@ import json from '@rollup/plugin-json';
 import nodePolyfills from 'rollup-plugin-node-polyfills';
 
 export default {
-  input: "src/index.js",
+  input: "src/index.jsx",
   output: [
     {
       file: "dist/bundle.esm.js",
