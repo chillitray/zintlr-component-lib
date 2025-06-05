@@ -24,7 +24,7 @@ const AccountSettingSection = () => {
 
   return (
     <ProfileWrapperCard className="flex flex-col gap-5">
-      <div className="text-base font-semibold   text-text-black">ACCOUNT SETTINGS</div>
+      <div className="text-base font-semibold   text-text-black">ACCOUNT SETTINGS Hello world </div>
       {/* <DisplayCard Item={logout_data} handleClick={LogoutHandler} />
 			<DisplayCard
 				Item={password_data}
