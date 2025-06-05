@@ -4,8 +4,18 @@
   "description": "React component library by Zintlr",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.js"
+    },
+    "./*": "./dist/*"
+  },
   "files": [
-    "dist"
+    "dist",
+    "src/**/*.jsx",
+    "src/**/*.js",
+    "src/**/*.css"
   ],
   "sideEffects": false,
   "scripts": {
