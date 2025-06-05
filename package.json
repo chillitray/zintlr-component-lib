@@ -17,7 +17,8 @@
     "prepare": "husky install || true",
     "postinstall": "npm run prepare",
     "prebuild": "npm install",
-    "build": "npm run clean:dist && rollup -c",
+    "build": "npm run clean:dist && rollup -c && webpack",
+    "build:webpack": "webpack --mode production",
     "watch": "rollup -c -w",
     "dev": "npm run build && npm run watch",
     "link-local": "npm link",
@@ -74,6 +75,8 @@
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-terser": "^0.4.4",
     "autoprefixer": "^10.4.7",
+    "babel-loader": "^10.0.0",
+    "css-loader": "^6.10.0",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-react": "^7.37.5",
@@ -88,6 +91,9 @@
     "rollup": "^4.34.6",
     "rollup-plugin-node-polyfills": "^0.2.1",
     "rollup-plugin-postcss": "^4.0.2",
-    "tailwindcss": "^3.0.24"
+    "style-loader": "^3.3.4",
+    "tailwindcss": "^3.0.24",
+    "webpack": "^5.90.3",
+    "webpack-cli": "^5.1.4"
   }
 }
