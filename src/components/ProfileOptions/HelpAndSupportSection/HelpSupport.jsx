@@ -7,6 +7,18 @@ import {
 import HelpSupportCard from './HelpSupportCard';
 import ZintlrDocCard from './ZintlrDocCard';
 
+/**
+ * Help and Support Section Component
+ * Displays Zintlr documentation and help support cards
+ * 
+ * @component
+ * @example
+ * ```jsx
+ * <HelpSupport />
+ * ```
+ * 
+ * @returns {JSX.Element} Help and Support section with documentation and support cards
+ */
 const HelpSupport = () => {
   return (
     <>

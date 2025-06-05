@@ -2,6 +2,35 @@ import React from 'react';
 import Link from 'next/link';
 import ProfileWrapperCard from '../../Utility/ProfileWrapperCard';
 
+/**
+ * @typedef {Object} HelpSupportItem
+ * @property {string} title - The title of the help support card
+ * @property {string} description - The description text
+ * @property {string} [url] - Optional URL for the clickable link
+ * @property {string} clickable - Text for the clickable element
+ * @property {Function} [onClick] - Optional click handler if no URL is provided
+ */
+
+/**
+ * Help Support Card Component
+ * Displays a single help and support item in a card format
+ * 
+ * @component
+ * @example
+ * ```jsx
+ * const item = {
+ *   title: "Getting Started",
+ *   description: "Learn how to use Zintlr",
+ *   url: "https://docs.zintlr.com",
+ *   clickable: "Read More"
+ * };
+ * <HelpSupportCard item={item} />
+ * ```
+ * 
+ * @param {Object} props
+ * @param {HelpSupportItem} props.item - The help support item data
+ * @returns {JSX.Element} A card displaying help and support information
+ */
 const HelpSupportCard = ({ item }) => {
   return (
     <ProfileWrapperCard id="helpSupport" className="flex flex-col gap-5">
