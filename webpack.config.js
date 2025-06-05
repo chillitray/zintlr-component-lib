@@ -1,10 +1,35 @@
 const path = require('path');
 
 module.exports = {
+  mode: 'production',
   entry: './src/index.jsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
+    library: {
+      type: 'umd',
+    },
+    globalObject: 'this',
+  },
+  externals: {
+    react: {
+      commonjs: 'react',
+      commonjs2: 'react',
+      amd: 'react',
+      root: 'React',
+    },
+    'react-dom': {
+      commonjs: 'react-dom',
+      commonjs2: 'react-dom',
+      amd: 'react-dom',
+      root: 'ReactDOM',
+    },
+    'react-toastify': {
+      commonjs: 'react-toastify',
+      commonjs2: 'react-toastify',
+      amd: 'react-toastify',
+      root: 'ReactToastify',
+    },
   },
   module: {
     rules: [
@@ -14,14 +39,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: [
-              ['@babel/preset-env', { targets: { node: 'current' } }],
-              ['@babel/preset-react', { runtime: 'automatic' }],
-            ],
-            plugins: [
-              '@babel/plugin-proposal-class-properties',
-              ['@babel/plugin-transform-runtime', { useESModules: true }],
-            ],
+            presets: ['@babel/preset-env', '@babel/preset-react'],
           },
         },
       },
@@ -33,12 +51,9 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '.jsx'],
-    alias: {
-      '@': path.resolve(__dirname, 'src'),
-    },
   },
-  externals: {
-    react: 'React',
-    'react-dom': 'ReactDOM',
+  optimization: {
+    minimize: true,
+    sideEffects: false,
   },
 };

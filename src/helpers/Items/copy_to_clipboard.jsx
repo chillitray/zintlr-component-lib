@@ -1,6 +1,5 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-import { Toast } from '../../components/Toast/Toast';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import isBrowser from './isBrowser';
 
 /**
@@ -12,24 +11,24 @@ import isBrowser from './isBrowser';
  */
 const copy_to_clipboard = (text, type = 'Email') => {
   if (isBrowser()) {
-    navigator.clipboard.writeText(text);
-    const toastElement = document.createElement('div');
-    document.body.appendChild(toastElement);
-
-    const handleClose = () => {
-      document.body.removeChild(toastElement);
-    };
-
-    const toastProps = {
-      message: `${type} copied to clipboard`,
-      type: 'success',
-      duration: 3000,
-      position: 'top-right',
-      onClose: handleClose,
-    };
-
-    const root = createRoot(toastElement);
-    root.render(<Toast {...toastProps} />);
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        toast.success(`${type} copied to clipboard`, {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+      })
+      .catch(() => {
+        toast.error('Failed to copy to clipboard', {
+          position: toast.POSITION.TOP_RIGHT,
+          autoClose: 3000,
+        });
+      });
   }
 };
 
