@@ -1,10 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
-import ProfileWrapperCard from '../../Utility/ProfileWrapperCard';
 
 const HelpSupportCard = ({ item }) => {
   return (
-    <ProfileWrapperCard id="helpSupport" className="flex flex-col gap-5">
+    <div>
       <div className={'flex flex-col gap-3 rounded-md px-3 py-4'}>
         <div className="flex flex-row gap-1">
           {/* <item.icon className="w-5 h-5" /> */}
@@ -31,7 +30,7 @@ const HelpSupportCard = ({ item }) => {
           )}
         </div>
       </div>
-    </ProfileWrapperCard>
+    </div>
   );
 };
 

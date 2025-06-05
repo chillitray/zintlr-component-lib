@@ -1,10 +1,9 @@
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
-import terser from "@rollup/plugin-terser";
 import babel from "@rollup/plugin-babel";
+import terser from "@rollup/plugin-terser";
 import postcss from "rollup-plugin-postcss";
 import json from '@rollup/plugin-json';
-import nodePolyfills from 'rollup-plugin-node-polyfills';
 
 export default {
   input: "src/index.jsx",
@@ -13,59 +12,54 @@ export default {
       file: "dist/bundle.esm.js",
       format: "esm",
       sourcemap: true,
-      globals: {
-        react: 'React',
-        'react-dom': 'ReactDOM'
-      }
     },
     {
       file: "dist/bundle.cjs.js",
       format: "cjs",
       sourcemap: true,
-      globals: {
-        react: 'React',
-        'react-dom': 'ReactDOM'
-      }
     },
-  ],
-  plugins: [
-    json(),
-    nodePolyfills(),
-    resolve({
-      extensions: [".js", ".jsx"],
-      exportConditions: ['node', 'import', 'require', 'default'],
-      preferBuiltins: true,
-      browser: true
-    }),
-    commonjs({
-      include: /node_modules/,
-      transformMixedEsModules: true
-    }),
-    babel({
-      presets: [
-        "@babel/preset-env",
-        ["@babel/preset-react", {
-          runtime: "classic",
-          development: process.env.NODE_ENV === "development"
-        }]
-      ],
-      babelHelpers: "bundled",
-      extensions: [".js", ".jsx"],
-      exclude: "node_modules/**"
-    }),
-    postcss({
-      extract: true,
-      minimize: true,
-    }),
-    terser(),
   ],
   external: [
     "react",
     "react-dom",
+    "prop-types",
+    "@reduxjs/toolkit",
+    "react-redux",
+    "axios",
+    "yup",
+    /^react-icons/,
     "next/link",
     "next/image",
     "next/router",
     "next/head",
-    /^react-icons($|\/.*)/,
+    /^next\/.*/,
+  ],
+  plugins: [
+    resolve({
+      extensions: [".js", ".jsx"],
+      preferBuiltins: true,
+    }),
+    commonjs({
+      include: /node_modules/,
+      requireReturnsDefault: 'auto',
+    }),
+    babel({
+      babelHelpers: "bundled",
+      exclude: "node_modules/**",
+      presets: ["@babel/preset-env", "@babel/preset-react"],
+      plugins: ["@babel/plugin-proposal-class-properties"],
+    }),
+    postcss({
+      config: {
+        path: './postcss.config.mjs',
+      },
+      extensions: ['.css'],
+      minimize: true,
+      inject: {
+        insertAt: 'top',
+      },
+    }),
+    json(),
+    terser(),
   ],
 };
