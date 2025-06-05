@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const ZintlrDocCard = ({ title, description, icon, onClick }) => {
+export const ZintlrDocCard = ({ title, description, icon, onClick }) => {
   return (
     <div
       className="flex items-center gap-4 p-4 rounded-lg cursor-pointer hover:bg-gray-50"

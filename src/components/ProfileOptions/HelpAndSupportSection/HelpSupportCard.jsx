@@ -1,37 +1,35 @@
 import React from 'react';
-import Link from 'next/link';
+import PropTypes from 'prop-types';
 
-const HelpSupportCard = ({ item }) => {
+export const HelpSupportCard = ({ item, colorId }) => {
+  const colors = ['bg-blue-100', 'bg-green-100', 'bg-yellow-100', 'bg-red-100'];
+
   return (
-    <div>
-      <div className={'flex flex-col gap-3 rounded-md px-3 py-4'}>
-        <div className="flex flex-row gap-1">
-          {/* <item.icon className="w-5 h-5" /> */}
-          <div className="font-semibold text-sm leading-5 text-text-black">{item?.title}</div>
-        </div>
-        <div className="flex flex-col gap-2.5 p-5 rounded border  bg-white xl:w-[607px]">
-          <div className="font-normal text-sm leading-4 text-black">{item?.description}</div>
-          {item?.url ? (
-            <Link href={item.url} passHref>
-              <button
-                className="font-semibold text-xs leading-4 text-black00 hover:underline cursor-pointer"
-                target="_blank"
-              >
-                {item.clickable}
-              </button>
-            </Link>
-          ) : (
-            <div
-              className="font-semibold text-xs leading-4 text-black00 hover:underline cursor-pointer"
-              onClick={item?.onClick}
-            >
-              {item?.clickable}
-            </div>
-          )}
-        </div>
+    <div
+      className={`flex items-center p-4 rounded-lg cursor-pointer ${
+        colors[colorId % colors.length]
+      } hover:opacity-80`}
+      onClick={item.onClick}
+    >
+      {item.icon && <div className="text-2xl mr-4">{item.icon}</div>}
+      <div>
+        <h3 className="text-lg font-medium">{item.title}</h3>
+        {item.description && <p className="text-sm text-gray-600">{item.description}</p>}
+        {item.email && <p className="text-sm text-blue-600">{item.email}</p>}
       </div>
     </div>
   );
+};
+
+HelpSupportCard.propTypes = {
+  item: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    email: PropTypes.string,
+    icon: PropTypes.node,
+    onClick: PropTypes.func,
+  }).isRequired,
+  colorId: PropTypes.number,
 };
 
 export default HelpSupportCard;

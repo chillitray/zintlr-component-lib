@@ -10,7 +10,7 @@ import isBrowser from './isBrowser';
  * @param {string} type The type of data being copied (e.g., "Email"). Default value is "Email".
  * @returns {void} This function does not return anything.
  */
-const copy_to_clipboard = (text, type = 'Email') => {
+export const copyToClipboard = (text, type = 'Email') => {
   if (isBrowser()) {
     navigator.clipboard.writeText(text);
     const toastElement = document.createElement('div');
@@ -33,4 +33,4 @@ const copy_to_clipboard = (text, type = 'Email') => {
   }
 };
 
-export default copy_to_clipboard;
+export default copyToClipboard;
