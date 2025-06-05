@@ -4,31 +4,46 @@ import { babel } from "@rollup/plugin-babel";
 import terser from "@rollup/plugin-terser";
 import postcss from "rollup-plugin-postcss";
 import json from '@rollup/plugin-json';
+import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 
-const config = {
+const createConfig = (format) => ({
   input: 'src/index.jsx',
-  output: [
-    {
-      file: 'dist/index.js',
-      format: 'cjs',
-      sourcemap: true,
+  output: {
+    file: `dist/index.${format === 'esm' ? 'esm.js' : 'js'}`,
+    format,
+    sourcemap: true,
+    exports: 'named',
+    name: 'ZintlrComponentLib',
+    globals: {
+      react: 'React',
+      'react-dom': 'ReactDOM',
     },
-    {
-      file: 'dist/index.esm.js',
-      format: 'esm',
-      sourcemap: true,
-    },
-  ],
+  },
   plugins: [
+    peerDepsExternal(),
     resolve({
-      extensions: ['.js', '.jsx']
+      extensions: ['.js', '.jsx'],
+      preferBuiltins: true,
     }),
-    commonjs(),
+    commonjs({
+      include: /node_modules/,
+    }),
     json(),
     babel({
       exclude: 'node_modules/**',
       babelHelpers: 'bundled',
-      presets: ['@babel/preset-env', '@babel/preset-react'],
+      presets: [
+        ['@babel/preset-env', {
+          modules: false,
+          targets: {
+            browsers: ['>0.2%', 'not dead', 'not op_mini all']
+          }
+        }],
+        '@babel/preset-react'
+      ],
+      plugins: [
+        '@babel/plugin-proposal-class-properties'
+      ],
       extensions: ['.js', '.jsx']
     }),
     postcss({
@@ -37,18 +52,36 @@ const config = {
       },
       extensions: ['.css'],
       minimize: true,
+      modules: true,
       inject: {
         insertAt: 'top',
       },
     }),
-    terser(),
+    terser({
+      format: {
+        comments: false,
+      },
+      compress: {
+        drop_console: true,
+        pure_getters: true,
+      }
+    }),
   ],
-  external: ['react', 'react-dom'],
+  external: [
+    'react',
+    'react-dom',
+    '@reduxjs/toolkit',
+    'react-redux',
+    'axios',
+    'yup'
+  ],
   onwarn(warning, warn) {
-    // Suppress 'this is undefined' warning
     if (warning.code === 'THIS_IS_UNDEFINED') return;
     warn(warning);
   }
-};
+});
 
-export default config;
+export default [
+  createConfig('cjs'),
+  createConfig('esm')
+];
