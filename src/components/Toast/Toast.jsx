@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import * as PropTypes from 'prop-types';
 
-const Toast = ({ message, type = 'info', duration = 3000, position = 'top-right', onClose }) => {
+export const Toast = ({
+  message,
+  type = 'info',
+  duration = 3000,
+  position = 'top-right',
+  onClose,
+}) => {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {

@@ -47,10 +47,14 @@ export default {
     babel({
       babelHelpers: "runtime",
       exclude: "node_modules/**",
-      presets: ["@babel/preset-env", "@babel/preset-react"],
+      extensions: [".js", ".jsx"],
+      presets: [
+        ["@babel/preset-env", { targets: { node: "current" } }],
+        ["@babel/preset-react", { runtime: "automatic" }],
+      ],
       plugins: [
         "@babel/plugin-proposal-class-properties",
-        ["@babel/plugin-transform-runtime", { useESModules: true }]
+        ["@babel/plugin-transform-runtime", { useESModules: true }],
       ],
     }),
     postcss({

@@ -1,6 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import Toast from '../../components/Toast/Toast';
+import { Toast } from '../../components/Toast/Toast';
 import isBrowser from './isBrowser';
 
 /**
@@ -10,7 +10,7 @@ import isBrowser from './isBrowser';
  * @param {string} type The type of data being copied (e.g., "Email"). Default value is "Email".
  * @returns {void} This function does not return anything.
  */
-export const copyToClipboard = (text, type = 'Email') => {
+const copy_to_clipboard = (text, type = 'Email') => {
   if (isBrowser()) {
     navigator.clipboard.writeText(text);
     const toastElement = document.createElement('div');
@@ -33,4 +33,4 @@ export const copyToClipboard = (text, type = 'Email') => {
   }
 };
 
-export default copyToClipboard;
+export default copy_to_clipboard;
