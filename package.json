@@ -20,8 +20,8 @@
   "scripts": {
     "clean": "rm -rf dist && rm -rf node_modules",
     "clean:dist": "rm -rf dist",
-    "prepare": "husky install",
-    "postinstall": "npm run prepare",
+    "prepare": "[ -n \"$CI\" ] || [ ! -d .git ] || husky install",
+    "postinstall": "[ -n \"$CI\" ] || [ ! -d .git ] || npm run prepare",
     "prebuild": "npm install",
     "build": "npm run clean:dist && rollup -c",
     "build:next": "next build",
