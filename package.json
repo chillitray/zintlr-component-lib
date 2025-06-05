@@ -2,35 +2,53 @@
   "name": "zintlr-component-lib",
   "version": "1.0.0",
   "description": "React component library by Zintlr",
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
+  "main": "dist/bundle.cjs.js",
+  "module": "dist/bundle.esm.js",
   "exports": {
     ".": {
-      "import": "./dist/index.esm.js",
-      "require": "./dist/index.js"
-    }
+      "import": "./dist/bundle.esm.js",
+      "require": "./dist/bundle.cjs.js"
+    },
+    "./*": "./src/*.jsx"
   },
   "files": [
     "dist",
-    "src"
+    "src/**/*.jsx",
+    "src/**/*.js"
   ],
   "sideEffects": false,
   "scripts": {
-    "dev": "next dev",
+    "clean": "rm -rf dist && rm -rf node_modules",
+    "clean:dist": "rm -rf dist",
+    "prepare": "husky install",
+    "postinstall": "npm run prepare",
+    "prebuild": "npm install",
+    "build": "npm run clean:dist && rollup -c",
     "build:next": "next build",
+    "dev": "next dev",
     "start": "next start",
-    "build:package": "rollup -c",
-    "build": "npm run build:package && npm run build:next",
-    "clean": "rm -rf dist && rm -rf .next",
-    "lint": "eslint . --ext .js,.jsx",
-    "lint:fix": "eslint . --ext .js,.jsx --fix",
+    "watch": "rollup -c -w",
+    "link-local": "npm link",
+    "publish-local": "npm run build && yalc publish",
+    "watch-local": "npm run build && yalc publish && npm run watch",
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
-    "prepare": "husky install || true",
-    "prepublishOnly": "npm run build:package"
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
   },
   "peerDependencies": {
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "next": "^14.0.0"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.5.1",
@@ -52,13 +70,13 @@
     "autoprefixer": "^10.4.7",
     "eslint": "^8.56.0",
     "eslint-config-next": "^14.0.0",
-    "eslint-config-prettier": "^10.1.5",
+    "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",
-    "husky": "^9.1.7",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.2.2",
     "postcss": "^8.4.13",
     "prettier": "^3.5.3",
-    "prop-types": "^15.8.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-icons": "4.11.0",
@@ -79,20 +97,5 @@
     "zintlr"
   ],
   "author": "Zintlr Private Limited",
-  "license": "ISC",
-  "publishConfig": {
-    "access": "public"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+  "license": "ISC"
 }

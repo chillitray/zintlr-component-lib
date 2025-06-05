@@ -9,7 +9,7 @@ import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 const createConfig = (format) => ({
   input: 'src/index.jsx',
   output: {
-    file: `dist/index.${format === 'esm' ? 'esm.js' : 'js'}`,
+    file: `dist/bundle.${format === 'esm' ? 'esm.js' : 'cjs.js'}`,
     format,
     sourcemap: true,
     exports: 'named',
@@ -22,11 +22,14 @@ const createConfig = (format) => ({
   plugins: [
     peerDepsExternal(),
     resolve({
-      extensions: ['.js', '.jsx'],
+      extensions: [".js", ".jsx"],
+      exportConditions: ['node', 'import', 'require', 'default'],
       preferBuiltins: true,
+      browser: true
     }),
     commonjs({
       include: /node_modules/,
+      transformMixedEsModules: true
     }),
     json(),
     babel({
