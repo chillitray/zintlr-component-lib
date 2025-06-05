@@ -1,71 +1,54 @@
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
+import { babel } from "@rollup/plugin-babel";
 import terser from "@rollup/plugin-terser";
-import babel from "@rollup/plugin-babel";
 import postcss from "rollup-plugin-postcss";
 import json from '@rollup/plugin-json';
-import nodePolyfills from 'rollup-plugin-node-polyfills';
 
-export default {
-  input: "src/index.jsx",
+const config = {
+  input: 'src/index.jsx',
   output: [
     {
-      file: "dist/bundle.esm.js",
-      format: "esm",
+      file: 'dist/index.js',
+      format: 'cjs',
       sourcemap: true,
-      globals: {
-        react: 'React',
-        'react-dom': 'ReactDOM'
-      }
     },
     {
-      file: "dist/bundle.cjs.js",
-      format: "cjs",
+      file: 'dist/index.esm.js',
+      format: 'esm',
       sourcemap: true,
-      globals: {
-        react: 'React',
-        'react-dom': 'ReactDOM'
-      }
     },
   ],
   plugins: [
-    json(),
-    nodePolyfills(),
     resolve({
-      extensions: [".js", ".jsx"],
-      exportConditions: ['node', 'import', 'require', 'default'],
-      preferBuiltins: true,
-      browser: true
+      extensions: ['.js', '.jsx']
     }),
-    commonjs({
-      include: /node_modules/,
-      transformMixedEsModules: true
-    }),
+    commonjs(),
+    json(),
     babel({
-      presets: [
-        "@babel/preset-env",
-        ["@babel/preset-react", {
-          runtime: "classic",
-          development: process.env.NODE_ENV === "development"
-        }]
-      ],
-      babelHelpers: "bundled",
-      extensions: [".js", ".jsx"],
-      exclude: "node_modules/**"
+      exclude: 'node_modules/**',
+      babelHelpers: 'bundled',
+      presets: ['@babel/preset-env', '@babel/preset-react'],
+      extensions: ['.js', '.jsx']
     }),
     postcss({
-      extract: true,
+      config: {
+        path: './postcss.config.js',
+      },
+      extensions: ['.css'],
       minimize: true,
+      inject: {
+        insertAt: 'top',
+      },
     }),
     terser(),
   ],
-  external: [
-    "react",
-    "react-dom",
-    "next/link",
-    "next/image",
-    "next/router",
-    "next/head",
-    /^react-icons($|\/.*)/,
-  ],
+  external: ['react', 'react-dom'],
+  onwarn(warning, warn) {
+    // Suppress 'this is undefined' warning
+    if (warning.code === 'THIS_IS_UNDEFINED') return;
+    warn(warning);
+  }
 };
+
+export default config;
