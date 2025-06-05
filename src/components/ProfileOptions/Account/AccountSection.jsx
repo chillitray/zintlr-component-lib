@@ -3,7 +3,7 @@ import UserInfo from './UserInfo';
 import AccountSettingSection from './AccountSettingSection';
 import DangerZone from './DangerZone';
 
-const AcountSection = () => {
+const AccountSection = () => {
   return (
     <div className="flex flex-col gap-4">
       <UserInfo />
@@ -13,4 +13,4 @@ const AcountSection = () => {
   );
 };
 
-export default AcountSection;
+export default AccountSection;
