@@ -3,7 +3,7 @@ import commonjs from "@rollup/plugin-commonjs";
 import terser from "@rollup/plugin-terser";
 import babel from "@rollup/plugin-babel";
 import postcss from "rollup-plugin-postcss";
-import json from '@rollup/plugin-json'; // Add this line
+import json from '@rollup/plugin-json';
 
 export default {
   input: "src/index.jsx",
@@ -20,11 +20,10 @@ export default {
     },
   ],
   plugins: [
-    json(), // Add this before other plugins
+    json(),
     resolve({
       extensions: [".js", ".jsx"],
       exportConditions: ['node', 'import', 'require', 'default'],
-      // Add this to properly resolve Next.js imports
       preferBuiltins: true,
     }),
     commonjs(),
@@ -39,7 +38,6 @@ export default {
     }),
     terser(),
   ],
-  // Add all Next.js specific imports to external dependencies
   external: [
     "react",
     "react-dom",
@@ -47,5 +45,6 @@ export default {
     "next/image",
     "next/router",
     "next/head",
+    /^react-icons($|\/.*)/,
   ],
 };

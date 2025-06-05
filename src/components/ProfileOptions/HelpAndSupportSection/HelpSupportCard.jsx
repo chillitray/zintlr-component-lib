@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import ProfileWrapperCard from "../../../utils/ProfileWrapperCard";
+import ProfileWrapperCard from "../../Utility/ProfileWrapperCard";
 
 
 const HelpSupportCard = ({ item }) => {

@@ -1,5 +1,3 @@
-export { default as ProfileSection } from "./components/ProfileSection.jsx";
 export { default as HelpSupport } from "./components/ProfileOptions/HelpAndSupportSection/HelpSupport.jsx";
-export { default as HelloWorld } from "./components/HelloWorld.jsx";
-
-export { default as request_caller } from "./api-handlers/request-handler.js";
+export { default as requestCaller } from "./api-handlers/request-handler.js";
+export { default as AcountSection } from "./components/ProfileOptions/Account/AcountSection.jsx";

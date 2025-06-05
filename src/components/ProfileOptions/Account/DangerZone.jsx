@@ -1,6 +1,4 @@
 import { GoAlertFill } from "react-icons/go";
-import { dangerZoneDescription } from "@/constant/Profile/static-data-profile";
-import DeactivateModal from "../../Common/UserDetails_LeftSide/DeactivateModal";
 import styles from "../styles/styles.module.css";
 
 const DangerZone = () => {
