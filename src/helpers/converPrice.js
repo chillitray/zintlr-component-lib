@@ -13,9 +13,9 @@ const convertPrice = (pack, conversion_rate) => {
 
   if (!isNaN(price)) {
     pack.meta_info[0].default_price.push({
-      currency: "INR",
+      currency: 'INR',
       price: Math.round(price * (conversion_rate?.inr || AVG_CONVERSION_RATE)),
-      country: "India",
+      country: 'India',
     });
   }
 

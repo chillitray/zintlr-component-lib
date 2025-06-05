@@ -1,5 +1,5 @@
-import { GoAlertFill } from "react-icons/go";
-import styles from "../styles/styles.module.css";
+import { GoAlertFill } from 'react-icons/go';
+import styles from '../styles/styles.module.css';
 
 const DangerZone = () => {
   return (

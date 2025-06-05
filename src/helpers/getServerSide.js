@@ -1,5 +1,4 @@
-import convertPrice from "./converPrice";
-
+import convertPrice from './converPrice';
 
 /**
  * Fetches the conversion rate and subscription data for server-side rendering.
@@ -15,22 +14,21 @@ const getServerSide = async (context, request_caller, urlsHandler, axios) => {
 
   try {
     // Fetch the conversion rate and subscriptions in parallel
-    const [conversion_rate_min_promise, subscriptions_promise] =
-      await Promise.allSettled([
-        axios.get(
-          `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/${date}/currencies/usd/inr.min.json`
-        ),
-        request_caller({
-          endpoint: urlsHandler.apis.subscription.all,
-          errorToast: false,
-          successToast: false,
-          headers: context.req.headers,
-        }),
-      ]);
+    const [conversion_rate_min_promise, subscriptions_promise] = await Promise.allSettled([
+      axios.get(
+        `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/${date}/currencies/usd/inr.min.json`
+      ),
+      request_caller({
+        endpoint: urlsHandler.apis.subscription.all,
+        errorToast: false,
+        successToast: false,
+        headers: context.req.headers,
+      }),
+    ]);
 
     // Handle conversion rate
     let conversion_rate_value = {};
-    if (conversion_rate_min_promise.status === "fulfilled") {
+    if (conversion_rate_min_promise.status === 'fulfilled') {
       conversion_rate_value = conversion_rate_min_promise.value.data;
     } else {
       try {
@@ -45,7 +43,7 @@ const getServerSide = async (context, request_caller, urlsHandler, axios) => {
     }
 
     // Handle subscriptions
-    if (subscriptions_promise.status === "fulfilled") {
+    if (subscriptions_promise.status === 'fulfilled') {
       const packs = subscriptions_promise.value.data;
       if (packs) {
         packs.custom = (packs?.custom || []).map((pack) =>
@@ -60,7 +58,7 @@ const getServerSide = async (context, request_caller, urlsHandler, axios) => {
       response.packs = null;
     }
   } catch (error) {
-    console.error("Error in getServerSide:", error);
+    console.error('Error in getServerSide:', error);
     response.packs = null;
   }
 

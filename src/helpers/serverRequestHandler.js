@@ -1,4 +1,4 @@
-const cookie = require("cookie");
+const cookie = require('cookie');
 /**
  * This method is the global method for calling API request on the server.
  * @param {object} CustomRequestObject
@@ -13,15 +13,15 @@ const cookie = require("cookie");
  */
 
 export default function serverRequestHandler({
-  method = "get",
-  endpoint = "",
+  method = 'get',
+  endpoint = '',
   data = {},
   req = null,
   res = null,
   isAuthRequired = false,
   worksWithoutAuth = false,
-  successCallback = (_) => {},
-  errorCallback = (_) => {},
+  successCallback = () => {},
+  errorCallback = () => {},
   isSourceRequired = false,
   getIP,
   verify_and_decrypt_jwt,
@@ -41,7 +41,7 @@ export default function serverRequestHandler({
 
   const headers = {};
   // Captcha token is just to check the authenticity
-  headers["Captcha-Token"] = CAPTCHA_TOKEN;
+  headers['Captcha-Token'] = CAPTCHA_TOKEN;
 
   let options = {
     method: method,
@@ -49,7 +49,7 @@ export default function serverRequestHandler({
     headers: headers,
   };
 
-  const cookies = cookie.parse(req.headers.cookie || "{}");
+  const cookies = cookie.parse(req.headers.cookie || '{}');
   //If auth is required or it doesn't matter if logged in or not
   //e.g. Pricing page shows different packages for users
   if (isAuthRequired || worksWithoutAuth) {
@@ -66,8 +66,8 @@ export default function serverRequestHandler({
     }
 
     //If logged in, decrypt key and access_token coming from cookies
-    let key = "",
-      access_token = "";
+    let key = '',
+      access_token = '';
     if (isLoggedIn) {
       // key = cipher_decryption(cookies.key, process.env.CIPHER);
       // access_token = cipher_decryption(cookies.access_token, process.env.CIPHER);
@@ -75,16 +75,11 @@ export default function serverRequestHandler({
       // The above cipher_decryption is creating irregularity across the platforms,
       // That's why we are using consistent encryption using jwt.
       key = verify_and_decrypt_jwt(cookies.key, process.env.CIPHER);
-      access_token = verify_and_decrypt_jwt(
-        cookies.access_token,
-        process.env.CIPHER
-      );
+      access_token = verify_and_decrypt_jwt(cookies.access_token, process.env.CIPHER);
     }
 
     //Add token in headers
-    options.headers.Authorization = `${
-      data?.ltd ? process.env.LTD_KEY : access_token
-    }`;
+    options.headers.Authorization = `${data?.ltd ? process.env.LTD_KEY : access_token}`;
     data.key = data?.ltd ? null : key;
   }
 
@@ -92,20 +87,20 @@ export default function serverRequestHandler({
   data.ip_address = getIP(req);
 
   if (cookies) {
-    const visitorId = cookies["visitor-id"] || null;
+    const visitorId = cookies['visitor-id'] || null;
     // Adding "visitor-id"
     if (visitorId) {
-      headers["visitor-id"] = visitorId;
+      headers['visitor-id'] = visitorId;
     }
   }
   // Adding "Client-ip-address" in headers for every api call.
-  headers["client-ip-address"] = getIP(req);
+  headers['client-ip-address'] = getIP(req);
 
   options = {
     ...options,
-    params: method === "get" ? data : {},
-    data: method !== "get" ? data : {},
-    responseType: "json",
+    params: method === 'get' ? data : {},
+    data: method !== 'get' ? data : {},
+    responseType: 'json',
   };
 
   //   ConsoleMsg.log(options);
@@ -115,11 +110,8 @@ export default function serverRequestHandler({
     .then((result) => {
       if (result?.data?.success) {
         //Cache for get requests
-        if (method === "get") {
-          res.setHeader(
-            "Cache-Control",
-            "public, s-maxage=59, stale-while-revalidate=59"
-          );
+        if (method === 'get') {
+          res.setHeader('Cache-Control', 'public, s-maxage=59, stale-while-revalidate=59');
         }
         successCallback(result.data);
         // res.status(200).json(result.data);

@@ -1,4 +1,4 @@
-import ProfileWrapperCard from "../../Utility/ProfileWrapperCard";
+import ProfileWrapperCard from '../../Utility/ProfileWrapperCard';
 
 // const DisplayCard = ({ Item, handleClick }) => {
 // 	return (
@@ -20,20 +20,20 @@ import ProfileWrapperCard from "../../Utility/ProfileWrapperCard";
 // };
 
 const AccountSettingSection = () => {
-	// const router = useRouter();
+  // const router = useRouter();
 
-	return (
-		<ProfileWrapperCard className="flex flex-col gap-5">
-			<div className="text-base font-semibold   text-text-black">ACCOUNT SETTINGS</div>
-			{/* <DisplayCard Item={logout_data} handleClick={LogoutHandler} />
+  return (
+    <ProfileWrapperCard className="flex flex-col gap-5">
+      <div className="text-base font-semibold   text-text-black">ACCOUNT SETTINGS</div>
+      {/* <DisplayCard Item={logout_data} handleClick={LogoutHandler} />
 			<DisplayCard
 				Item={password_data}
 				handleClick={() => {
 					open_auth_page({ url: urls.changePassword, path: router.pathname });
 				}}
 			/> */}
-		</ProfileWrapperCard>
-	);
+    </ProfileWrapperCard>
+  );
 };
 
 export default AccountSettingSection;
