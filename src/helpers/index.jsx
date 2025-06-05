@@ -1,4 +1,4 @@
-export { default as copy_to_clipboard } from './Items/copy_to_clipboard';
+export { default as copy_to_clipboard } from './Items/copy_to_clipboard.jsx';
 export { default as create_dp } from './Items/create_dp';
 export { default as getCookies } from './Items/getCookies';
 export { default as get_formated_url } from './Items/get_formated_url';
