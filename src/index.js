@@ -1,8 +1,5 @@
 // Export components
-export * from './exports/components';
+export * from './exports/components/index.js';
 
 // Export helpers
-export * from './exports/helpers';
-
-export { ProfileWrapperCard } from './components/Wrappers/ProfileWrapperCard';
-export { ExampleCard } from './components/ExampleCard';
+export * from './exports/helpers/index.js';
