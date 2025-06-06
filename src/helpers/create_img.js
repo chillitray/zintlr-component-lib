@@ -71,7 +71,7 @@ const get_svg = (initials, imageColor = null) => {
     svg.innerHTML = `
 			<text x="50%" y=${y_margin} fill="${
         imageColor?.textColor ?? 'white'
-      }" style="font-weight: 700; text-transform: uppercase; font-family: 'Roboto', sans-serif;" 
+      }" style="font-weight: 700; text-transform: uppercase; font-family: 'Roboto', sans-serif;"
 			dominant-baseline="middle"  text-anchor="middle" alignment-baseline="central" font-size="90">
 				${initials}
 			</text>
@@ -123,16 +123,26 @@ export const getInitialsSvg = (_name, bgColor = null) => {
  * @returns {string} - The base64-encoded SVG image data or an empty string if no name is provided or it's not a browser environment.
  */
 export const createImg = (name, bgColor = null) => {
-  // Check if a name is provided and the code is running in a browser environment.
-  if (name && isBrowser()) {
-    // Generate an SVG image element with initials based on the provided name.
-    let initials_img = getInitialsSvg(name, bgColor);
-    // Serialize the SVG element to a string.
-    var s = new XMLSerializer().serializeToString(initials_img);
-    // Encode the SVG string to base64.
-    var encodedData = window.btoa(s);
-    // Return the base64-encoded SVG image data.
-    return 'data:image/svg+xml;base64,' + encodedData;
+  try {
+    // Check if we're in a browser environment and have required APIs
+    if (typeof window === 'undefined' || !window.btoa || !window.XMLSerializer) {
+      console.warn('createImg requires browser environment with btoa and XMLSerializer support');
+      return '';
+    }
+
+    // Check if a name is provided and the code is running in a browser environment.
+    if (name && isBrowser()) {
+      // Generate an SVG image element with initials based on the provided name.
+      let initials_img = getInitialsSvg(name, bgColor);
+      // Serialize the SVG element to a string.
+      var s = new XMLSerializer().serializeToString(initials_img);
+      // Encode the SVG string to base64.
+      var encodedData = window.btoa(s);
+      // Return the base64-encoded SVG image data.
+      return 'data:image/svg+xml;base64,' + encodedData;
+    }
+  } catch (error) {
+    console.warn('Error creating image:', error);
   }
   // Return an empty string if no name is provided or it's not a browser environment.
   return '';
