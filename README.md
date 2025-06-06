@@ -102,6 +102,28 @@ Import components from the library:
 import { ComponentName } from 'zintlr-component-lib';
 ```
 
+## File Extensions
+
+The project uses different file extensions for specific purposes:
+
+### `.js` (JavaScript) Files
+- Regular JavaScript files
+- Can use both CommonJS (`require()`/`module.exports`) and ES Modules (`import`/`export`)
+- Traditional format supported by all JavaScript environments
+
+### `.mjs` (ES Modules JavaScript) Files
+- Explicitly denotes that a file uses ES Modules
+- Allows using ES Modules in Node.js without additional configuration
+- Provides better static analysis and tree-shaking capabilities
+- Clearer module boundaries and better dependency management
+
+### `.map` (Source Map) Files
+- Maps minified/transpiled code back to original source code
+- Enables debugging using original source code in browser dev tools
+- Automatically generated during build process
+- Essential for debugging production code and transpiled code
+- Makes debugging easier by showing original source instead of minified version
+
 ## Contributing
 
 1. Create a new branch for your feature
