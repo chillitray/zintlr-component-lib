@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ExampleCard = ({ title, children }) => {
+export const ExampleCard = ({ title, children }) => {
   return (
     <div className="border rounded-lg p-4 bg-white">
       <h2 className="text-xl font-bold mb-2">{title}</h2>
@@ -9,4 +9,3 @@ const ExampleCard = ({ title, children }) => {
   );
 };
 
-export default ExampleCard;
