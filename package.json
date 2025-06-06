@@ -7,6 +7,10 @@
   "files": [
     "dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sandeep-zintlr/zintlr-component-lib.git"
+  },
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
