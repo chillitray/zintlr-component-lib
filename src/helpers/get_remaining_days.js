@@ -15,4 +15,4 @@ export const get_remaining_days = (date_to_differ, date = new Date()) => {
 
   // Calculate the difference in days between the reference and target dates.
   return expiry_date.diff(moment_date, 'days');
-}
+};

@@ -9,4 +9,4 @@ export const get_formated_date = (date) => {
     month: 'long',
     year: 'numeric',
   });
-}
+};

@@ -1,5 +1,4 @@
-import { isBrowser } from "./isBrowser";
-
+import { isBrowser } from './isBrowser';
 
 export const click_chat_fun = () => {
   if (isBrowser()) {
@@ -8,4 +7,4 @@ export const click_chat_fun = () => {
       elements[0].click();
     }
   }
-}
+};

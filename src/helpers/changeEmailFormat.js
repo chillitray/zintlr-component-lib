@@ -3,7 +3,7 @@
  * @param {Object[]} data_emails An array of email objects or undefined.
  * @returns An array of processed email objects with accuracy calculated.
  */
-export function changeEmailFormat (data_emails){
+export function changeEmailFormat(data_emails) {
   let emails;
   // Check if data_emails is not an array, and return an empty array.
   if (!Array.isArray(data_emails)) {
@@ -40,4 +40,4 @@ export function changeEmailFormat (data_emails){
   }
   // Return the processed array of email objects.
   return emails;
-};
+}

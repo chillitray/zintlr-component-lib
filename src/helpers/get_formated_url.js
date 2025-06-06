@@ -16,4 +16,4 @@ export const get_formated_url = (url) => {
   }
   // If URL starts with "http", return the URL as it is
   return url;
-}
+};

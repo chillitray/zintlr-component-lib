@@ -22,4 +22,4 @@ export const refactor_ln_urls = (original_url) => {
     url = 'https://linkedin.com/company/' + username;
   }
   return url;
-}
+};

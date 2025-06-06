@@ -14,4 +14,3 @@ export const copy_to_clipboard = (text, type = 'Email') => {
     toast.success(`${type} copied to clipboard`);
   }
 };
-

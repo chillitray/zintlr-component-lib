@@ -14,4 +14,4 @@ export const get_domain_name = (url) => {
 
   // Return the hostname of the URL, which represents the domain name.
   return url_obj.hostname;
-}
+};

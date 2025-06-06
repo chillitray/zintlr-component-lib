@@ -25,4 +25,4 @@ export const get_days_to_month_years = (days) => {
     .filter(Boolean)
     .join(' ')
     .trim();
-}
+};

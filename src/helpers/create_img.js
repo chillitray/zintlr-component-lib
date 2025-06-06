@@ -136,4 +136,4 @@ export const createImg = (name, bgColor = null) => {
   }
   // Return an empty string if no name is provided or it's not a browser environment.
   return '';
-}
+};

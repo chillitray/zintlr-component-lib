@@ -9,4 +9,4 @@ export const underscoresNormalText = (input) => {
     .split('_') // Split the string into parts by underscores
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize each part
     .join(' '); // Join the parts with spaces
-}
+};

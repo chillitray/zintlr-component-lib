@@ -20,7 +20,11 @@ export { formatTeamData } from '../../helpers/get_invitation_formated_data.js';
 export { get_next_billing_date } from '../../helpers/get_next_billing_date.js';
 export { get_remaining_days } from '../../helpers/get_remaining_days.js';
 export { getCookieValue } from '../../helpers/getCookies.js';
-export { getLockedUnlockProfiles, checkIfProfileLocked, checkIfProfileUnLocked } from '../../helpers/getLockedUnlockProfiles.js';
+export {
+  getLockedUnlockProfiles,
+  checkIfProfileLocked,
+  checkIfProfileUnLocked,
+} from '../../helpers/getLockedUnlockProfiles.js';
 export { isBrowser } from '../../helpers/isBrowser.js';
 export { readExcelCSV } from '../../helpers/readExcelCSV.js';
 export { refactor_ln_urls } from '../../helpers/refactor_ln_urls.js';

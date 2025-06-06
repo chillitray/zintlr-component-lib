@@ -7,4 +7,4 @@ import { get_formated_date } from './get_formated_date';
  */
 export const get_next_billing_date = (date) => {
   return get_formated_date(moment(date).add(1, 'days').toISOString());
-}
+};

@@ -37,4 +37,3 @@ export const useOnScreen = (ref) => {
   // Return the boolean value indicating whether the element is currently visible on the screen.
   return isIntersecting;
 };
-

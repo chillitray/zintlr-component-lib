@@ -12,4 +12,4 @@ export const get_combined_location = (location) => {
   // Use the filter method to remove any undefined or null elements from the array, leaving only the non-empty values.
   // Then, join the non-empty values with a comma and space to create the final combined location string.
   return location_array.filter((a) => a).join(', ');
-}
+};

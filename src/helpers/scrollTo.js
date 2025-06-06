@@ -19,7 +19,7 @@ export const scrollToById = (id) => {
       element.scrollIntoView(scrollOptions);
     }
   }, 200);
-}
+};
 
 /**
  * Scrolls to the element indicated by the 'href' attribute of the event target.
@@ -35,4 +35,4 @@ export const scrollTo = (e) => {
     // Scroll the element into view with the specified scroll behavior options.
     doc.scrollIntoView(scrollOptions);
   }
-}
+};

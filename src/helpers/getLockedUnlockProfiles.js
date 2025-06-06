@@ -58,4 +58,4 @@ export const getLockedUnlockProfiles = (profiles = [], unlocked = true) => {
     }
     return checkIfProfileLocked(person_data);
   });
-}
+};

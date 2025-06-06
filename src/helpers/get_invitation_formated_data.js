@@ -42,4 +42,4 @@ export const formatTeamData = (data) => {
         create_datetime: item.invitation_status === 2 ? item.create_datetime : null,
         team_invitations_id: item.team_invitations_id,
       }));
-}
+};

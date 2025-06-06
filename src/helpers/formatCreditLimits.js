@@ -12,4 +12,4 @@ export const formatCreditLimits = (creditsTeam) => {
     name: keyMapping[key] || key,
     ...value,
   }));
-}
+};
