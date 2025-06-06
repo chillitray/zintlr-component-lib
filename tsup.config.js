@@ -82,6 +82,8 @@ module.exports = defineConfig({
   clean: true,
   treeshake: true,
   minify: true,
+  target: ['es2020', 'node16'],
+  platform: 'browser',
   external: [
     'react',
     'react-dom',
@@ -104,6 +106,10 @@ module.exports = defineConfig({
   esbuildOptions: (options) => {
     options.mainFields = ['module', 'main'];
     options.conditions = ['import', 'require'];
+    options.target = ['es2020', 'node16'];
+    options.jsx = 'transform';
+    options.jsxFactory = 'React.createElement';
+    options.jsxFragment = 'React.Fragment';
   },
   esbuildPlugins: [
     validateDependencies(),
