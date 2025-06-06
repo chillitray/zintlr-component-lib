@@ -9,7 +9,7 @@ var React__default = /*#__PURE__*/_interopDefault(React);
 
 // src/index.js
 var ToastWrapper = ({
-  position = "top-center",
+  position = "bottom-right",
   expand = false,
   richColors = true,
   closeButton = true,

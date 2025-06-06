@@ -3,7 +3,7 @@ import { Toaster, toast } from 'sonner';
 
 // Toast component that provides the Toaster container
 export const ToastWrapper = ({ 
-  position = 'top-center',
+  position = 'bottom-right',
   expand = false,
   richColors = true,
   closeButton = true,

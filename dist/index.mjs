@@ -4,7 +4,7 @@ export { toast } from 'sonner';
 
 // src/index.js
 var ToastWrapper = ({
-  position = "top-center",
+  position = "bottom-right",
   expand = false,
   richColors = true,
   closeButton = true,
