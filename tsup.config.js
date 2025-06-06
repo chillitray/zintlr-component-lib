@@ -98,7 +98,8 @@ module.exports = defineConfig({
   jsxFactory: "React.createElement",
   jsxFragment: "React.Fragment",
   loader: {
-    '.js': 'jsx'
+    '.js': 'jsx',
+    '.jsx': 'jsx'
   },
   esbuildOptions: (options) => {
     options.mainFields = ['module', 'main'];
