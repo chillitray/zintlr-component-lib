@@ -1,2 +1,5 @@
-export * from './exports/components/index.js';
-export * from './exports/helpers/index.js';
+// Export components
+export * from './exports/components';
+
+// Export helpers
+export * from './exports/helpers';

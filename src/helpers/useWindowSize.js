@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
-import isBrowser from '../../helpers/isBrowser';
+import isBrowser from './isBrowser';
 
 /**
  * To get width and height of the screen, use this hook

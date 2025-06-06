@@ -62,15 +62,36 @@ function validateDependencies() {
   };
 }
 
+// Plugin to handle external imports
+function handleExternalImports() {
+  return {
+    name: 'handle-external-imports',
+    setup(build) {
+      build.onResolve({ filter: /^(react|xlsx|moment|next)/ }, args => {
+        return { external: true, sideEffects: false }
+      })
+    }
+  }
+}
+
 module.exports = defineConfig({
   entry: ["src/index.js"],
   format: ["cjs", "esm"],
   splitting: false,
   sourcemap: true,
   clean: true,
-  external: ["react", "react-dom", "sonner"],
   treeshake: true,
   minify: true,
+  external: [
+    'react',
+    'react-dom',
+    'sonner',
+    'xlsx',
+    'moment',
+    'next',
+    'next/router'
+  ],
+  noExternal: [],
   minifyIdentifiers: true,
   minifyWhitespace: true,
   minifySyntax: true,
@@ -79,18 +100,18 @@ module.exports = defineConfig({
   loader: {
     '.js': 'jsx'
   },
-  esbuildOptions(options) {
-    options.minify = true;
-    options.minifyIdentifiers = true;
-    options.minifySyntax = true;
-    options.minifyWhitespace = true;
-    options.keepNames = false;
-    options.mangleProps = /./;
-    options.drop = ['console', 'debugger'];
-    options.pure = ['console.log'];
-    options.legalComments = 'none';
-    options.charset = 'utf8';
-    options.treeShaking = true;
+  esbuildOptions: (options) => {
+    options.banner = {
+      js: `
+        import { createRequire } from 'module';
+        const require = createRequire(import.meta.url);
+      `,
+    };
+    options.mainFields = ['module', 'main'];
+    options.conditions = ['import', 'require'];
   },
-  esbuildPlugins: [validateDependencies()]
+  esbuildPlugins: [
+    validateDependencies(),
+    handleExternalImports()
+  ]
 }); 
