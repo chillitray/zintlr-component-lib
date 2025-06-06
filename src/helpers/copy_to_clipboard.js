@@ -8,7 +8,7 @@ import { isBrowser } from './isBrowser';
  * @param {string} type The type of data being copied (e.g., "Email"). Default value is "Email".
  * @returns {void} This function does not return anything.
  */
-export const copy_to_clipboard = (text, type = 'Email') => {
+export function copy_to_clipboard(text, type = 'Email'){
   if (isBrowser()) {
     navigator.clipboard.writeText(text);
     toast.success(`${type} copied to clipboard`);
