@@ -2,12 +2,12 @@ import React from 'react';
 import { Toaster, toast } from 'sonner';
 
 // Toast component that provides the Toaster container
-export const ToastWrapper = ({ 
+export const ToastWrapper = ({
   position = 'bottom-right',
   expand = false,
   richColors = true,
   closeButton = true,
-  ...props 
+  ...props
 }) => {
   return (
     <Toaster
@@ -21,4 +21,4 @@ export const ToastWrapper = ({
 };
 
 // Export toast functions for direct use
-export { toast }; 
+export { toast };
