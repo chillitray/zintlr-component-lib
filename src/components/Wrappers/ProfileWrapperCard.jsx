@@ -6,4 +6,4 @@ export const ProfileWrapperCard = ({ children, className = '', id = '' }) => {
       <div className={`p-3 sm:p-7 mb-2 ${className}`}>{children}</div>
     </div>
   );
-}
+};
