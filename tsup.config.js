@@ -101,12 +101,6 @@ module.exports = defineConfig({
     '.js': 'jsx'
   },
   esbuildOptions: (options) => {
-    options.banner = {
-      js: `
-        import { createRequire } from 'module';
-        const require = createRequire(import.meta.url);
-      `,
-    };
     options.mainFields = ['module', 'main'];
     options.conditions = ['import', 'require'];
   },
