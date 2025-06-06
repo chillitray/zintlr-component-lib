@@ -1,0 +1,1 @@
+{"version":3,"sources":["../src/index.js"],"names":[],"mappings":";;;AAGO,IAAM,UAAU,MAAM;AAC3B,EAAO,uBAAA,KAAA,CAAA,aAAA,CAAC,aAAI,mBAAiB,CAAA;AAC/B","file":"index.mjs","sourcesContent":["import React from 'react';\n\n// Export your components here\nexport const Example = () => {\n  return <div>Example Component</div>;\n}; "]}
