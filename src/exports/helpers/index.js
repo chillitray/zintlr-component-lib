@@ -30,4 +30,4 @@ export * from '../../helpers/updatePlural.js';
 export * from '../../helpers/useOnScreen.js';
 export * from '../../helpers/useQuery.js';
 export * from '../../helpers/userStateUpdate.js';
-export * from '../../helpers/useWindowSize.js'; 
+export * from '../../helpers/useWindowSize.js';
