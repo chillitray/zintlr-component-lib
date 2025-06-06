@@ -5,7 +5,7 @@ import moment from 'moment';
  * @param {days} -> the number of days
  * @returns {date} -> return in 2years/ 4 months/ 5 days format.
  */
-export default function get_days_to_month_years(days) {
+export const get_days_to_month_years = (days) => {
   return [
     moment.duration(days, 'days').years() &&
       `${moment.duration(days, 'days').years()} year${

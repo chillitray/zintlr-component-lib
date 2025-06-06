@@ -6,7 +6,7 @@ import moment from 'moment';
  * @param {Date?} date Optional. The reference date. Defaults to the current date.
  * @returns {number} The number of remaining days.
  */
-export default function get_remaining_days(date_to_differ, date = new Date()) {
+export const get_remaining_days = (date_to_differ, date = new Date()) => {
   // Convert the reference date to a Moment.js object.
   let moment_date = moment(date);
 

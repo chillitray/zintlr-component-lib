@@ -6,7 +6,7 @@ const keyMapping = {
 };
 
 // format the credits response
-export function formatCreditLimits(creditsTeam) {
+export const formatCreditLimits = (creditsTeam) => {
   if (!creditsTeam) return [];
   return Object.entries(creditsTeam).map(([key, value]) => ({
     name: keyMapping[key] || key,

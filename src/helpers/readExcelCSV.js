@@ -7,7 +7,7 @@ import { read, utils } from 'xlsx';
  *
  * Callback has the array of objects from the file
  */
-export default (file, callback = () => {}) => {
+export const readExcelCSV = (file, callback = () => {}) => {
   if (file) {
     const reader = new FileReader();
     //If the readAsBinaryString function available in the browser

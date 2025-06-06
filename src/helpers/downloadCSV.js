@@ -6,7 +6,7 @@ import { toast } from 'sonner';
  * @param {Array} array - An array of objects containing the data to be downloaded.
  * @returns {void}
  */
-export default (filename, array) => {
+export const downloadCSV = (filename, array) => {
   // Convert each object in the array to an array of its values
   const csv = array.map((row) => Object.values(row));
 

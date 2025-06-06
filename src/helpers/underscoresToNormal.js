@@ -4,7 +4,7 @@
  * @returns {string} The converted string with spaces and capitalized words (e.g., 'Work Phone').
  */
 
-export default function underscoresNormalText(input) {
+export const underscoresNormalText = (input) => {
   return input
     .split('_') // Split the string into parts by underscores
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize each part

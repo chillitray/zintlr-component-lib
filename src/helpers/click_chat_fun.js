@@ -1,6 +1,7 @@
-import isBrowser from './isBrowser';
+import { isBrowser } from "./isBrowser";
 
-export function click_chat_fun() {
+
+export const click_chat_fun = () => {
   if (isBrowser()) {
     var elements = document.getElementsByClassName('cc-157aw cc-1kgzy');
     if (elements && elements.length > 0) {

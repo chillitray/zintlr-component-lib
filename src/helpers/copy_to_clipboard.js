@@ -1,5 +1,5 @@
 import { toast } from 'sonner';
-import isBrowser from './isBrowser';
+import { isBrowser } from './isBrowser';
 
 /**
  * This function copies the given text to the clipboard
@@ -8,11 +8,10 @@ import isBrowser from './isBrowser';
  * @param {string} type The type of data being copied (e.g., "Email"). Default value is "Email".
  * @returns {void} This function does not return anything.
  */
-const copy_to_clipboard = (text, type = 'Email') => {
+export const copy_to_clipboard = (text, type = 'Email') => {
   if (isBrowser()) {
     navigator.clipboard.writeText(text);
     toast.success(`${type} copied to clipboard`);
   }
 };
 
-export default copy_to_clipboard;

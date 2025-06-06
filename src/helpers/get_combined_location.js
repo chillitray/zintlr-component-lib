@@ -6,7 +6,7 @@
  * @param {string} location.country The country name (optional).
  * @returns {string} The combined location string.
  */
-export default function get_combined_location(location) {
+export const get_combined_location = (location) => {
   // Create an array containing the city, state, and country properties from the location object.
   const location_array = [location?.city, location?.state, location?.country]; //, location?.zipcode
   // Use the filter method to remove any undefined or null elements from the array, leaving only the non-empty values.

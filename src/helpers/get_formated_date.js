@@ -3,7 +3,7 @@
  * @param {Date} date -> Date to format
  * @returns {Date}
  */
-export default function get_formated_date(date) {
+export const get_formated_date = (date) => {
   return new Date(date).toLocaleDateString('en-US', {
     day: 'numeric',
     month: 'long',

@@ -3,7 +3,7 @@
  * @param {string} url The input URL from which the domain name will be extracted.
  * @returns {string} The extracted domain name.
  */
-export default function get_domain_name(url) {
+export const get_domain_name = (url) => {
   // Check if the URL is provided. If not, return an empty string.
   if (!url) {
     return '';

@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
  * @returns {boolean} A boolean value representing whether the observed element is
  * currently visible on the screen.
  */
-const useOnScreen = (ref) => {
+export const useOnScreen = (ref) => {
   // State to keep track of whether the element is intersecting the viewport.
   const [isIntersecting, setIntersecting] = useState(false);
 
@@ -38,4 +38,3 @@ const useOnScreen = (ref) => {
   return isIntersecting;
 };
 
-export default useOnScreen;

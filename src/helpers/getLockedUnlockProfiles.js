@@ -50,7 +50,7 @@ export const checkIfProfileUnLocked = (person_data) => {
  * @param {boolean?} [unlocked=true] -> Flag to check unlock or lock status, if true check unlock status of profile
  * @returns {Object[]} Locked/Unlocked profiles
  */
-export default function getLockedUnlockProfiles(profiles = [], unlocked = true) {
+export const getLockedUnlockProfiles = (profiles = [], unlocked = true) => {
   return profiles.filter((person_data) => {
     if (unlocked) {
       //If no data for emails and phones, let them download

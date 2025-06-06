@@ -11,7 +11,7 @@
  * TODO: Update the Response of Invitation Data from Backend so that we dont want to format data again and again.
  */
 
-export function formatTeamData(data) {
+export const formatTeamData = (data) => {
   if (!Array.isArray(data)) {
     return [];
   }

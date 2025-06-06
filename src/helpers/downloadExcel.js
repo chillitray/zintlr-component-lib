@@ -8,7 +8,7 @@ import { utils, writeFile } from 'xlsx';
  * @param {object} data - Data to be written into the Excel file.
  * @returns {void}
  */
-export default function downloadExcel(filename, data) {
+export const downloadExcel = (filename, data) => {
   // Check if there is any data to write to the Excel file
   if (Object.keys(data).length === 0) {
     return;
@@ -29,4 +29,4 @@ export default function downloadExcel(filename, data) {
   writeFile(wb, final_filename);
   // Display a success toast message
   toast.success('Downloaded file successfully');
-}
+};

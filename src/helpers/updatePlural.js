@@ -5,7 +5,7 @@
  * @param {string} postfix The postfix string that will be added to the main text when the count is greater than 1. Default is "s".
  * @returns {string} The modified string with the postfix added based on the count value.
  */
-export default (count, text, postfix = 's') => {
+export const updatePlural = (count, text, postfix = 's') => {
   // Concatenate the main text and the postfix (if required) and return the result.
   return text + (count > 1 ? postfix : '');
 };

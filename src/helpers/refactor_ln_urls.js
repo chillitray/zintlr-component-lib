@@ -1,5 +1,5 @@
 // For Linkedin URLs
-export function refactor_ln_urls(original_url) {
+export const refactor_ln_urls = (original_url) => {
   let url = original_url;
   //we need to get only username
   if (url.includes('linkedin.com/in/')) {

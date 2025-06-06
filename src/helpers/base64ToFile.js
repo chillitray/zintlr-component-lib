@@ -35,7 +35,7 @@ function detectMimeType(b64) {
  * @param {string} s - The base64 encoded string to convert.
  * @returns {string|undefined} - The data URL representing the input with detected MIME type, or undefined if detection fails.
  */
-export function fromBase64ToFile(s) {
+export const fromBase64ToFile = (s) => {
   // Constructing the data URL using the detected MIME type and the input base64 string
   const final = 'data:' + detectMimeType(s) + ';base64,' + s;
   return final;

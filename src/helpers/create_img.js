@@ -1,4 +1,4 @@
-import isBrowser from './isBrowser';
+import { isBrowser } from './isBrowser';
 
 export const imageColors = {
   faint_blue: {
@@ -122,7 +122,7 @@ export const getInitialsSvg = (_name, bgColor = null) => {
  * @param {string?} bgColor - The color of the background of the image. If null, default black color will be used
  * @returns {string} - The base64-encoded SVG image data or an empty string if no name is provided or it's not a browser environment.
  */
-export default function createImg(name, bgColor = null) {
+export const createImg = (name, bgColor = null) => {
   // Check if a name is provided and the code is running in a browser environment.
   if (name && isBrowser()) {
     // Generate an SVG image element with initials based on the provided name.

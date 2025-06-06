@@ -3,7 +3,7 @@
  * @param {string} name The name of the cookie whose value is to be retrieved.
  * @returns {string} The value of the specified cookie if found, otherwise an empty string.
  */
-const getCookieValue = (name) => {
+export const getCookieValue = (name) => {
   // Splitting the cookies string into an array of individual cookie strings.
   const cookies = document.cookie.split('; ');
 
