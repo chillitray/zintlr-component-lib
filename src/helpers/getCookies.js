@@ -21,6 +21,3 @@ export const getCookieValue = (name) => {
   // If the specified cookie name is not found, return an empty string.
   return '';
 };
-
-// Exporting the getCookieValue function as the default export of this module.
-export default getCookieValue;

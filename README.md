@@ -1,4 +1,4 @@
-# Zintlr Component Library
+# Zintlr Library
 
 A React component library for Zintlr's design system.
 
@@ -112,4 +112,4 @@ import { ComponentName } from 'zintlr-component-lib';
 
 ## License
 
-ISC 
+ISC
