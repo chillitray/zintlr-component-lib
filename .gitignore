@@ -9,7 +9,6 @@ node_modules/
 /coverage
 
 # Production
-/dist
 /build
 
 # Misc
@@ -38,4 +37,4 @@ yarn-error.log*
 # Cache
 .cache
 .eslintcache
-.npm 
+.npm
