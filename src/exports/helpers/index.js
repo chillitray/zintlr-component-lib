@@ -36,3 +36,9 @@ export { useOnScreen } from '../../helpers/useOnScreen.js';
 export { useQuery } from '../../helpers/useQuery.js';
 export { UserContext, useUser } from '../../helpers/userStateUpdate.js';
 export { useWindowSize } from '../../helpers/useWindowSize.js';
+export {
+  formatPhoneNumbers,
+  formatEmails,
+  formatContactDetails,
+} from '../../helpers/data_formatter.js';
+export { request_caller } from '../../handlers/request-handler.js';
