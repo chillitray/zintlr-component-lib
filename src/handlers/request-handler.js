@@ -69,7 +69,7 @@ export function request_caller({
           validations.validateSync(data);
         } catch (error) {
           responseObj.message = error.errors.join(', ');
-          toast(responseObj.message, 'error');
+          toast.error(responseObj.message);
           reject(responseObj);
           return;
         }
@@ -97,12 +97,12 @@ export function request_caller({
         const data = res.data;
         if (data.success) {
           if (successToast) {
-            toast(data.message, 'success');
+            toast.success(data.message);
           }
           resolve(data);
         } else {
           if (errorToast) {
-            toast(data.message, 'error');
+            toast.error(data.message);
           }
           reject(data);
         }
@@ -144,7 +144,7 @@ export function request_caller({
             logFn([err.message, 'hey', errorToast], 'error');
           }
           if (errorToast) {
-            toast(err.message, 'error');
+            toast.error(err.message);
           }
         }
         reject(err);
