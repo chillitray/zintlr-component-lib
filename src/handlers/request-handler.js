@@ -18,6 +18,7 @@ export function isMethodProper(method) {
 export const requestAbortCode = -100;
 
 /**
+ * TODO Better documentation & Error handling
  * Core request handler - accepts all configuration as parameters
  */
 export function request_caller({
@@ -30,7 +31,7 @@ export function request_caller({
   controller = null,
   forceValidationSchema = null,
   skipValidation = false,
-  domain,
+  domain = null,
   // Toast and logging functions
   logFn = console.log,
 }) {
@@ -50,7 +51,7 @@ export function request_caller({
       data,
     });
 
-    let finalDomain = domain ?? process.env.NEXT_PUBLIC_FRONTEND_URL;
+    let finalDomain = domain ?? process.env.NEXT_PUBLIC_FRONTEND_URL + '/api/';
 
     // Domain validation important for better error handling
     if (!finalDomain) {
@@ -86,7 +87,7 @@ export function request_caller({
 
     const req_obj = {
       method: method,
-      url: finalDomain + '/api/' + endpoint,
+      url: finalDomain + endpoint,
       data: method !== 'get' ? data : {},
       responseType: 'json',
       headers: headers,
@@ -101,7 +102,7 @@ export function request_caller({
     }
 
     // Axios request
-    axios
+    return axios
       .request(req_obj)
       .then((res) => {
         const data = res.data;

@@ -107,7 +107,7 @@ module.exports = defineConfig({
     'jsonwebtoken'
   ],
   noExternal: [],
-  minifyIdentifiers: true,
+  minifyIdentifiers: false,
   minifyWhitespace: true,
   minifySyntax: true,
   jsxFactory: "React.createElement",

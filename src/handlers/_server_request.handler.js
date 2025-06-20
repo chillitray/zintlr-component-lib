@@ -18,6 +18,7 @@ function parseCookies(cookieString) {
 }
 
 /**
+ * TODO Better documentation & Error handling
  * This method is the global method for calling API request on the server.
  * @param {object} CustomRequestObject
  * @param {string} CustomRequestObject.method - Accepted methods "get", "post", "put", "delete"
@@ -29,11 +30,6 @@ function parseCookies(cookieString) {
  * @param {Function} CustomRequestObject.successCallback - Callback function for successful response
  * @param {Function} CustomRequestObject.errorCallback - Callback function for failed response
  * @param {string} CustomRequestObject.apiUrl - Base API URL
- * @param {string} CustomRequestObject.captchaToken - Captcha token for authenticity
- * @param {string} CustomRequestObject.platformSource - Platform source identifier
- * @param {Function} CustomRequestObject.getIP - Function to get IP from headers
- * @param {Function} CustomRequestObject.verifyAndDecryptJWT - Function to decrypt JWT
- * @param {Function} CustomRequestObject.parseCookies - Function to parse cookies
  * @param {Function} CustomRequestObject.logFn - Logging function
  */
 export function serverRequestHandler({
@@ -48,9 +44,6 @@ export function serverRequestHandler({
   isSourceRequired = false,
   logFn = console.log,
   apiUrl,
-  captchaToken,
-  platformSource,
-  cipher,
 }) {
   if (!req || !res) {
     return;
@@ -59,16 +52,18 @@ export function serverRequestHandler({
   data = {
     ...req.body,
     ...data,
-    ...(isSourceRequired && { source: platformSource }),
+    ...(isSourceRequired && { source: process.env.NEXT_PUBLIC_PLATFORM_SOURCE }),
   };
 
   const headers = {};
   // Captcha token is just to check the authenticity
-  headers['Captcha-Token'] = captchaToken;
+  headers['Captcha-Token'] = process.env.CAPTCHA_TOKEN;
+
+  const API_URL = apiUrl ?? process.env.NEXT_PUBLIC_API_URL;
 
   let options = {
     method: method,
-    url: apiUrl + endpoint,
+    url: API_URL + endpoint,
     headers: headers,
   };
 
@@ -99,8 +94,8 @@ export function serverRequestHandler({
 
     // The above cipher_decryption is creating irregularity across the platforms,
     // That's why we are using consistent encryption using jwt.
-    const key = verify_and_decrypt_jwt(cookies.key, cipher);
-    const access_token = verify_and_decrypt_jwt(cookies.access_token, cipher);
+    const key = verify_and_decrypt_jwt(cookies.key, process.env.CIPHER);
+    const access_token = verify_and_decrypt_jwt(cookies.access_token, process.env.CIPHER);
 
     //Add token in headers
     options.headers.Authorization = access_token;

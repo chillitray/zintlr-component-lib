@@ -43,11 +43,6 @@ export {
 } from '../../helpers/data_formatter.js';
 export { request_caller } from '../../handlers/request-handler.js';
 export {
-  isDomainDetected,
-  getDetectedDomain,
-  setEndpointsPath,
-} from '../../handlers/domain-auto-detector.js';
-export {
   setValidationConfig,
   getValidationSchema,
   getAllValidationSchemas,
