@@ -1,7 +1,21 @@
 import axios from 'axios';
 import { ErrorObject } from './request-handler';
 import { getIP, verify_and_decrypt_jwt } from './_common.handlers';
-import cookie from 'cookie';
+
+// Browser-compatible cookie parser
+function parseCookies(cookieString) {
+  const cookies = {};
+  if (!cookieString) return cookies;
+
+  cookieString.split(';').forEach((cookie) => {
+    const [name, value] = cookie.trim().split('=');
+    if (name && value) {
+      cookies[name] = decodeURIComponent(value);
+    }
+  });
+
+  return cookies;
+}
 
 /**
  * This method is the global method for calling API request on the server.
@@ -55,7 +69,7 @@ export function serverRequestHandler({
     headers: headers,
   };
 
-  const cookies = cookie.parse(req.headers.cookie || '{}');
+  const cookies = parseCookies(req.headers.cookie);
 
   //If auth is required or it doesn't matter if logged in or not
   //e.g. Pricing page shows different packages for users
