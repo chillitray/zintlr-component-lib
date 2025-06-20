@@ -24,15 +24,15 @@ async function loadDomainFromFile(path) {
         const module = await import(importPath);
 
         // Check for API_URL export
-        if (module.API_URL) {
+        if (module.FRONTEND_URL) {
           console.log(`✅ Domain loaded from: ${importPath}`);
-          return module.API_URL;
+          return module.FRONTEND_URL;
         }
 
         // Check for default export that might contain API_URL
-        if (module.default && module.default.API_URL) {
+        if (module.default && module.default.FRONTEND_URL) {
           console.log(`✅ Domain loaded from default export: ${importPath}`);
-          return module.default.API_URL;
+          return module.default.FRONTEND_URL;
         }
 
         // Check if the module itself is the API_URL
