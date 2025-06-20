@@ -7,11 +7,10 @@ import {
   getValidatorForEndpoint,
   isValidatorsInitialized,
 } from './validator-auto-detector.js';
-import {
-  autoDetectDomainHandler,
-  // isDomainDetected,
-  // getDetectedDomain,
-} from './domain-auto-detector.js';
+import {} from // autoDetectDomainHandler,
+// isDomainDetected,
+// getDetectedDomain,
+'./domain-auto-detector.js';
 
 export const ErrorObject = {
   message: '',
@@ -43,7 +42,7 @@ export function request_caller({
   logFn = console.log,
   // Auto-detection options
   autoDetectValidators = true,
-  autoDetectDomain = true,
+  // autoDetectDomain = true,
 }) {
   return new Promise((resolve, reject) => {
     const responseObj = { ...ErrorObject };
@@ -62,30 +61,30 @@ export function request_caller({
     });
 
     // Auto-detect domain if not provided and auto-detection is enabled
-    let finalDomain = domain;
-    if (!finalDomain && autoDetectDomain) {
-      // finalDomain = isDomainDetected() ? getDetectedDomain() : null;
+    let finalDomain = domain ?? process.env.NEXT_PUBLIC_FRONTEND_URL;
+    // if (!finalDomain && autoDetectDomain) {
+    //   // finalDomain = isDomainDetected() ? getDetectedDomain() : null;
 
-      if (!finalDomain) {
-        // Handle async domain detection
-        autoDetectDomainHandler()
-          .then((detectedDomain) => {
-            finalDomain = detectedDomain;
-            if (!finalDomain) {
-              responseObj.message = 'Domain is required';
-              reject(responseObj);
-              return;
-            }
-            processRequest();
-          })
-          .catch((error) => {
-            logFn?.('Auto-detection of domain failed:', error.message);
-            responseObj.message = 'Domain is required';
-            reject(responseObj);
-          });
-        return;
-      }
-    }
+    //   if (!finalDomain) {
+    //     // Handle async domain detection
+    //     autoDetectDomainHandler()
+    //       .then((detectedDomain) => {
+    //         finalDomain = detectedDomain;
+    //         if (!finalDomain) {
+    //           responseObj.message = 'Domain is required';
+    //           reject(responseObj);
+    //           return;
+    //         }
+    //         processRequest();
+    //       })
+    //       .catch((error) => {
+    //         logFn?.('Auto-detection of domain failed:', error.message);
+    //         responseObj.message = 'Domain is required';
+    //         reject(responseObj);
+    //       });
+    //     return;
+    //   }
+    // }
 
     // Domain validation important for better error handling
     if (!finalDomain) {
