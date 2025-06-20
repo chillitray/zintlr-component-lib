@@ -46,8 +46,10 @@ export function serverRequestHandler({
   successCallback = () => {},
   errorCallback = () => {},
   isSourceRequired = false,
-  platformSource,
   logFn = console.log,
+  apiUrl,
+  captchaToken,
+  platformSource,
 }) {
   if (!req || !res) {
     return;
@@ -61,11 +63,11 @@ export function serverRequestHandler({
 
   const headers = {};
   // Captcha token is just to check the authenticity
-  headers['Captcha-Token'] = process.env.NEXT_PUBLIC_CAPTCHA_TOKEN;
+  headers['Captcha-Token'] = captchaToken;
 
   let options = {
     method: method,
-    url: process.env.NEXT_PUBLIC_API_URL + endpoint,
+    url: apiUrl + endpoint,
     headers: headers,
   };
 
