@@ -9,8 +9,8 @@ import {
 } from './validator-auto-detector.js';
 import {
   autoDetectDomainHandler,
-  isDomainDetected,
-  getDetectedDomain,
+  // isDomainDetected,
+  // getDetectedDomain,
 } from './domain-auto-detector.js';
 
 export const ErrorObject = {
@@ -64,7 +64,7 @@ export function request_caller({
     // Auto-detect domain if not provided and auto-detection is enabled
     let finalDomain = domain;
     if (!finalDomain && autoDetectDomain) {
-      finalDomain = isDomainDetected() ? getDetectedDomain() : null;
+      // finalDomain = isDomainDetected() ? getDetectedDomain() : null;
 
       if (!finalDomain) {
         // Handle async domain detection

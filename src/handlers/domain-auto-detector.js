@@ -13,25 +13,10 @@ async function loadDomainFromFile(path) {
     // Try different possible paths for the endpoints file
     const possiblePaths = [
       path,
-      `../${path}`,
-      `../../${path}`,
-      `./${path}`,
-      `src/${path}`,
-      `lib/${path}`,
       // Add constants folder paths
       `constants/${path}`,
       `../constants/${path}`,
       `../../constants/${path}`,
-      // Add .js extensions
-      `${path}.js`,
-      `../${path}.js`,
-      `../../${path}.js`,
-      `./${path}.js`,
-      `src/${path}.js`,
-      `lib/${path}.js`,
-      `constants/${path}.js`,
-      `../constants/${path}.js`,
-      `../../constants/${path}.js`,
     ];
 
     for (const importPath of possiblePaths) {
