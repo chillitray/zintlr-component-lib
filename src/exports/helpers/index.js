@@ -48,9 +48,11 @@ export {
   setEndpointsPath,
 } from '../../handlers/domain-auto-detector.js';
 export {
-  isValidatorsInitialized,
-  getValidatorForEndpoint,
-  getValidators,
-} from '../../handlers/validator-auto-detector.js';
+  setValidationConfig,
+  getValidationSchema,
+  getAllValidationSchemas,
+  isValidationConfigInitialized,
+  resetValidationConfig,
+} from '../../configs/validator-config.js';
 export { serverRequestHandler } from '../../handlers/_server_request.handler.js';
 export { getIP, verify_and_decrypt_jwt } from '../../handlers/_common.handlers.js';
