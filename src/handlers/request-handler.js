@@ -127,7 +127,7 @@ export function request_caller({
 
       const req_obj = {
         method: method,
-        url: finalDomain + endpoint,
+        url: finalDomain + '/api/' + endpoint,
         data: method !== 'get' ? data : {},
         responseType: 'json',
         headers: headers,

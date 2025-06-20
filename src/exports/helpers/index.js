@@ -42,7 +42,11 @@ export {
   formatContactDetails,
 } from '../../helpers/data_formatter.js';
 export { request_caller } from '../../handlers/request-handler.js';
-export { isDomainDetected, getDetectedDomain } from '../../handlers/domain-auto-detector.js';
+export {
+  isDomainDetected,
+  getDetectedDomain,
+  setEndpointsPath,
+} from '../../handlers/domain-auto-detector.js';
 export {
   isValidatorsInitialized,
   getValidatorForEndpoint,

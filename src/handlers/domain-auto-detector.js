@@ -106,25 +106,21 @@ export async function autoDetectDomainHandler(options = {}) {
  * Get the detected domain
  * @returns {string|null} - Detected domain or null
  */
-export function getDetectedDomain() {
-  return detectedDomain;
-}
+export const getDetectedDomain = () => detectedDomain;
 
 /**
  * Check if domain is initialized
  * @returns {boolean} - Whether domain is initialized
  */
-export function isDomainDetected() {
-  return isDomainInitialized;
-}
+export const isDomainDetected = () => isDomainInitialized;
 
 /**
  * Set the endpoints path
  * @param {string} path - Path to endpoints file
  */
-export function setEndpointsPath(path) {
+export const setEndpointsPath = (path) => {
   endpointsPath = path;
-}
+};
 
 // Create a convenience object for backward compatibility
 export const domainAutoDetector = {
