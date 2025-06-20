@@ -102,8 +102,16 @@ export function serverRequestHandler({
     const access_token = verify_and_decrypt_jwt(cookies.access_token, process.env.CIPHER);
 
     //Add token in headers
-    options.headers.Authorization = `${data?.ltd ? process.env.LTD_KEY : access_token}`;
-    data.key = data?.ltd ? null : key;
+    options.headers.Authorization = access_token;
+    data.key = key;
+  }
+
+  if (cookies) {
+    const visitorId = cookies['visitor-id'] || null;
+    // Adding "visitor-id"
+    if (visitorId) {
+      options.headers['visitor-id'] = visitorId;
+    }
   }
 
   // Get IP address from request data or fallback to getIP helper
