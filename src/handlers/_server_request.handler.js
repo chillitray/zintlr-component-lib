@@ -50,6 +50,7 @@ export function serverRequestHandler({
   apiUrl,
   captchaToken,
   platformSource,
+  cipher,
 }) {
   if (!req || !res) {
     return;
@@ -98,8 +99,8 @@ export function serverRequestHandler({
 
     // The above cipher_decryption is creating irregularity across the platforms,
     // That's why we are using consistent encryption using jwt.
-    const key = verify_and_decrypt_jwt(cookies.key, process.env.CIPHER);
-    const access_token = verify_and_decrypt_jwt(cookies.access_token, process.env.CIPHER);
+    const key = verify_and_decrypt_jwt(cookies.key, cipher);
+    const access_token = verify_and_decrypt_jwt(cookies.access_token, cipher);
 
     //Add token in headers
     options.headers.Authorization = access_token;
