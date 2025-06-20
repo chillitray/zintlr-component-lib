@@ -1,7 +1,7 @@
 // State management using module-level variables (functional approach)
 let detectedDomain = null;
 let isDomainInitialized = false;
-let endpointsPath = 'constants/endpoints.js';
+let endpointsPath = 'endpoints.js';
 
 /**
  * Load domain from the endpoints file
