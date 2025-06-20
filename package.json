@@ -1,6 +1,6 @@
 {
   "name": "zintlr-component-lib",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -18,11 +18,12 @@
     "dev": "tsup --watch",
     "lint": "eslint 'src/**/*.{js,jsx}'",
     "lint:fix": "eslint 'src/**/*.{js,jsx}' --fix",
-    "format": "prettier --write 'src/**/*.{js,jsx}'",
+    "prettier": "prettier --write 'src/**/*.{js,jsx}'",
     "prepare": "husky install",
     "clean": "rm -rf dist node_modules",
     "clean:dist": "rm -rf dist",
-    "clean:modules": "rm -rf node_modules"
+    "clean:modules": "rm -rf node_modules",
+    "prent": "npm run prettier && npm run lint:fix"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
@@ -47,6 +48,9 @@
     "sonner": "^1.0.0",
     "xlsx": "^0.18.5",
     "axios": "^0.27.2",
+    "cookie": "^0.5.0",
+    "crypto": "^1.0.1",
+    "jsonwebtoken": "^8.5.1",
     "yup": "^0.32.11"
   },
   "devDependencies": {
@@ -59,7 +63,10 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "framer-motion": "^12.16.0",
     "glob": "^11.0.2",
+    "crypto": "^1.0.1",
     "axios": "^0.27.2",
+    "jsonwebtoken": "8.5.1",
+    "cookie": "^0.5.0",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
     "moment": "^2.30.1",

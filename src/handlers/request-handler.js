@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { toast } from '../components/Toast.js';
 import * as yup from 'yup';
+import { getIP } from './_common.handlers.js';
 
 export const ErrorObject = {
   message: '',
@@ -74,6 +75,10 @@ export function request_caller({
           return;
         }
       }
+    }
+    // This is for the server side request to get the ip address ( Node is changing the ip address thats why we are using this method )
+    if (headers) {
+      data['browser-ip-address'] = getIP(headers);
     }
 
     const req_obj = {
