@@ -61,11 +61,11 @@ export function serverRequestHandler({
 
   const headers = {};
   // Captcha token is just to check the authenticity
-  headers['Captcha-Token'] = process.env.CAPTCHA_TOKEN;
+  headers['Captcha-Token'] = process.env.NEXT_PUBLIC_CAPTCHA_TOKEN;
 
   let options = {
     method: method,
-    url: process.env.API_URL + endpoint,
+    url: process.env.NEXT_PUBLIC_API_URL + endpoint,
     headers: headers,
   };
 
