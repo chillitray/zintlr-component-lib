@@ -1,8 +1,5 @@
 import * as jwt from 'jsonwebtoken';
 
-// Use crypto-browserify for cross-platform compatibility
-import crypto from 'crypto-browserify';
-
 /**
  * Hashing function to hash text by using SHA256
  * @param {object} obj
@@ -20,16 +17,6 @@ export function verify_and_decrypt_jwt(token, secret) {
     // console.error('JWT verification error:', error.message);
     return null;
   }
-}
-
-/**
- * Hashing function to hash text by using SHA256
- * @param {string} text
- * @param {string} secrete
- * @returns {string} Hashed value of string using SHA256 Algo
- */
-export function hashing(text, secrete) {
-  return crypto.createHmac('sha256', secrete).update(text).digest('hex');
 }
 
 /**
