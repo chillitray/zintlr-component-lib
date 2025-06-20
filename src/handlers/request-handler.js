@@ -175,6 +175,7 @@ export function request_caller({
           } else {
             if (logFn) {
               logFn('Request error:', error);
+              logFn('Request error:', req_obj);
             }
             responseObj.message =
               'Something went wrong on our side. Please try again. Sorry for the inconvenience';
