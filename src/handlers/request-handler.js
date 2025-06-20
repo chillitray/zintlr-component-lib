@@ -40,7 +40,7 @@ export function request_caller({
   forceValidationSchema = null,
   domain,
   // Toast and logging functions
-  logFn = null,
+  logFn = console.log,
   // Auto-detection options
   autoDetectValidators = true,
   autoDetectDomain = true,
@@ -54,6 +54,12 @@ export function request_caller({
       reject(responseObj);
       return;
     }
+
+    logFn?.('Request:', {
+      method,
+      endpoint,
+      data,
+    });
 
     // Auto-detect domain if not provided and auto-detection is enabled
     let finalDomain = domain;
@@ -134,6 +140,8 @@ export function request_caller({
         withCredentials: true,
         crossDomain: true,
       };
+
+      logFn?.('Request object:', req_obj);
 
       if (controller && controller instanceof AbortController) {
         req_obj.signal = controller.signal;

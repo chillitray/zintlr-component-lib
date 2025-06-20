@@ -7,15 +7,15 @@ const glob = require('glob');
 function getAllImports() {
   const imports = new Set();
   const errors = [];
-  
+
   // Get all JS/JSX files in src directory
   const files = glob.sync('src/**/*.{js,jsx}');
-  
+
   files.forEach(file => {
     const content = fs.readFileSync(file, 'utf8');
     // Match both import and require statements
     const importMatches = content.match(/(?:import.*?from\s+['"]([^'"./][^'"]*?)['"]|require\(['"]([^'"./][^'"]*?)['"]\))/g) || [];
-    
+
     importMatches.forEach(match => {
       const packageName = match.match(/['"]([^'"./][^'"]*)['"]/) || [];
       if (packageName[1]) {
@@ -27,7 +27,7 @@ function getAllImports() {
       }
     });
   });
-  
+
   return imports;
 }
 
@@ -48,7 +48,7 @@ function validateDependencies() {
         const errors = [];
 
         // Check for missing dependencies
-        imports.forEach(({package: pkg, file}) => {
+        imports.forEach(({ package: pkg, file }) => {
           if (!allDeps[pkg] && !['path', 'fs', 'util'].includes(pkg)) {
             errors.push(`Missing dependency: "${pkg}" is imported in ${file} but not found in package.json`);
           }
@@ -62,13 +62,23 @@ function validateDependencies() {
   };
 }
 
-// Plugin to handle external imports
+// Plugin to handle external imports and dynamic imports
 function handleExternalImports() {
   return {
     name: 'handle-external-imports',
     setup(build) {
-      build.onResolve({ filter: /^(react|xlsx|moment|next)/ }, args => {
+      // Handle external dependencies
+      build.onResolve({ filter: /^(react|react-dom|sonner|xlsx|moment|next|axios|yup|jsonwebtoken)/ }, args => {
         return { external: true, sideEffects: false }
+      })
+
+      // Handle dynamic imports to prevent webpack warnings
+      build.onResolve({ filter: /.*/ }, args => {
+        // If it's a dynamic import (variable path), mark as external
+        if (args.pluginData?.dynamicImport) {
+          return { external: true, sideEffects: false }
+        }
+        return null
       })
     }
   }
@@ -91,7 +101,10 @@ module.exports = defineConfig({
     'xlsx',
     'moment',
     'next',
-    'next/router'
+    'next/router',
+    'axios',
+    'yup',
+    'jsonwebtoken'
   ],
   noExternal: [],
   minifyIdentifiers: true,
@@ -115,4 +128,4 @@ module.exports = defineConfig({
     validateDependencies(),
     handleExternalImports()
   ]
-}); 
+});
