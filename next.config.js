@@ -1,3 +1,4 @@
+// Please check if we need this or not 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     // ... your existing Next.js config

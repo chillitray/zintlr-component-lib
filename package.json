@@ -1,6 +1,6 @@
 {
   "name": "zintlr-component-lib",
-  "version": "2.2.4",
+  "version": "3.0.0",
   "description": "",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -35,7 +35,7 @@
     ]
   },
   "keywords": [],
-  "author": "",
+  "author": "Zintlr Private Limited",
   "license": "ISC",
   "dependencies": {
     "react": "^18.2.0",

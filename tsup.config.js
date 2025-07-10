@@ -106,7 +106,6 @@ module.exports = defineConfig({
     'yup',
     'jsonwebtoken'
   ],
-  noExternal: [],
   minifyIdentifiers: false,
   minifyWhitespace: true,
   minifySyntax: true,

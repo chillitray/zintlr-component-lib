@@ -137,4 +137,5 @@ The project uses different file extensions for specific purposes:
 ISC
 
 
-npm update kerna hi i nhi 
+npm update kerna hi i nhi
+husky ko push mat kerna github repo per 

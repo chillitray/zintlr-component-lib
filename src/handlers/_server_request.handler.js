@@ -17,6 +17,8 @@ function parseCookies(cookieString) {
   return cookies;
 }
 
+// env touchpoints here
+
 /**
  * TODO Better documentation & Error handling
  * This method is the global method for calling API request on the server.
@@ -145,6 +147,7 @@ export function serverRequestHandler({
       } else {
         res.status(400).json(result.data);
       }
+      return result.data;
     })
     .catch((error) => {
       let err = error?.response?.data || { ...ErrorObject };
@@ -168,6 +171,7 @@ export function serverRequestHandler({
 
       errorCallback(err);
       res.status(err?.code === 500 ? 500 : 400).json(err);
+      return err;
     });
 }
 

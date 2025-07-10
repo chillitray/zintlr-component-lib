@@ -45,7 +45,7 @@ export function request_caller({
       return;
     }
 
-    logFn?.('Request:', {
+    logFn('Request:', {
       method,
       endpoint,
       data,
@@ -69,7 +69,7 @@ export function request_caller({
         const validations = yup.object().shape(validationSchema);
         try {
           validations.validateSync(data);
-          logFn?.('Validation passed', data);
+          logFn('Validation passed', data);
         } catch (error) {
           //If the body is invalid, send the error and reject the promise
           responseObj.message = error.errors.join(', ');
@@ -95,7 +95,7 @@ export function request_caller({
       crossDomain: true,
     };
 
-    logFn?.('Request object:', req_obj);
+    logFn('Request object:', req_obj);
 
     if (controller && controller instanceof AbortController) {
       req_obj.signal = controller.signal;
