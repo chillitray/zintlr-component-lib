@@ -15,7 +15,7 @@ const ignoredWarnings = [
 ];
 
 // Override console.warn to filter out specific warnings
-console.warn = function(msg) {
+console.warn = function (msg) {
   if (!ignoredWarnings.some(warning => msg.includes(warning))) {
     originalWarn.apply(console, arguments);
   }
@@ -41,16 +41,16 @@ async function checkGitStatus() {
 
 async function updateVersion(currentVersion) {
   const [major, minor, patch] = currentVersion.split('.').map(Number);
-  
+
   console.log('\nCurrent version:', currentVersion);
   console.log('1. Major update (x.0.0)');
   console.log('2. Minor update (0.x.0)');
   console.log('3. Patch update (0.0.x)');
   console.log('4. Keep current version');
-  
+
   const choice = await question('\nSelect version update type (1-4): ');
-  
-  switch(choice) {
+
+  switch (choice) {
     case '1':
       return `${major + 1}.0.0`;
     case '2':
@@ -87,12 +87,12 @@ async function runBuild() {
     await build({
       config: './tsup.config.js',
     });
-    
+
     // If there are uncommitted changes, prompt for version update
     if (hasChanges) {
       console.log('\n🔍 Detected uncommitted changes in the repository.');
       const newVersion = await updateVersion(packageInfo.version);
-      
+
       if (newVersion !== packageInfo.version) {
         await updatePackageJson(newVersion);
         console.log(`\n✨ Updated package version to ${newVersion}`);
@@ -101,7 +101,7 @@ async function runBuild() {
 
     // Get final package info
     const finalPackageInfo = await getPackageInfo();
-    
+
     // Show build summary
     console.log('\n✅ Build completed successfully!');
     console.log('\n📋 Package Summary:');
@@ -113,9 +113,9 @@ async function runBuild() {
     console.log('\n💡 To use in another project:');
     console.log('\n📋 Copy this command:');
     console.log('------------------');
-    console.log(`npm install git+https://github.com/Sandeep-zintlr/zintlr-component-lib.git#main`);
+    console.log(`npm install git+https://github.com/chillitray/zintlr-component-lib.git#main`);
     console.log('------------------\n');
-    
+
     if (hasChanges) {
       console.log('\n⚠️  Don\'t forget to commit your changes!');
       console.log('   git add .');
@@ -132,4 +132,4 @@ async function runBuild() {
   }
 }
 
-runBuild(); 
+runBuild();

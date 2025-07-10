@@ -7,7 +7,7 @@ A React component library for Zintlr's design system.
 To install the component library in your project:
 
 ```bash
-npm install git+https://github.com/Sandeep-zintlr/zintlr-component-lib.git#main
+npm install git+https://github.com/chillitray/zintlr-component-lib.git#main
 ```
 
 ## Development
@@ -138,4 +138,4 @@ ISC
 
 
 npm update kerna hi i nhi
-husky ko push mat kerna github repo per 
+husky ko push mat kerna github repo per
