@@ -88,6 +88,15 @@ async function runBuild() {
       config: './tsup.config.js',
     });
 
+    // Copy TypeScript declaration file to dist
+    console.log('\n📝 Copying TypeScript declarations...\n');
+    try {
+      await fs.copyFile('src/index.d.ts', 'dist/index.d.ts');
+      console.log('✅ TypeScript declarations copied successfully');
+    } catch (error) {
+      console.warn('⚠️  Warning: Could not copy TypeScript declarations:', error.message);
+    }
+
     // If there are uncommitted changes, prompt for version update
     if (hasChanges) {
       console.log('\n🔍 Detected uncommitted changes in the repository.');

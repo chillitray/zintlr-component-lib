@@ -87,6 +87,7 @@ function handleExternalImports() {
 module.exports = defineConfig({
   entry: ["src/index.js"],
   format: ["cjs", "esm"],
+  dts: true, // Enable TypeScript declaration generation
   splitting: false,
   sourcemap: true,
   clean: true,
