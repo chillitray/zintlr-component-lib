@@ -68,7 +68,7 @@ function handleExternalImports() {
     name: 'handle-external-imports',
     setup(build) {
       // Handle external dependencies
-      build.onResolve({ filter: /^(react|react-dom|sonner|xlsx|moment|next|axios|yup|jsonwebtoken)/ }, args => {
+      build.onResolve({ filter: /^(react|react-dom|sonner|xlsx|moment|next|axios|yup|jsonwebtoken|react-type-animation|react-switch)/ }, args => {
         return { external: true, sideEffects: false }
       })
 
@@ -105,7 +105,9 @@ module.exports = defineConfig({
     'next/router',
     'axios',
     'yup',
-    'jsonwebtoken'
+    'jsonwebtoken',
+    'react-type-animation',
+    'react-switch'
   ],
   minifyIdentifiers: false,
   minifyWhitespace: true,

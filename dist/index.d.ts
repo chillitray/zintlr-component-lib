@@ -376,4 +376,6 @@ export function withInitialPropsLogging<P extends object>(
     Component: React.ComponentType<P>
 ): React.ComponentType<P>;
 
-export function BaseApiHandler(handler: any): any;
+declare class BaseApiHandler {
+    static wrap(handler: any): any;
+}
