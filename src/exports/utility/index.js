@@ -24,4 +24,4 @@ export { default as SpecialText } from '../../utility/SpecialText';
 export { default as Spinner } from '../../utility/Spinner';
 export { default as TabComponent } from '../../utility/TabComponent';
 export { default as TransparentLoader } from '../../utility/TransparentLoader';
-export { default as cn } from '../../utility/cn';
+export { cn } from '../../utility/cn';

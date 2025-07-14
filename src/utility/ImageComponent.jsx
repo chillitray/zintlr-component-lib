@@ -1,7 +1,7 @@
 import NextImage from 'next/image';
 import { useEffect, useMemo, useState } from 'react';
 import useNextBlurhash from 'use-next-blurhash';
-import createImg from '../../helpers/create_img';
+import { createImg } from '../helpers/create_img';
 
 /**
  * ImageComponent is a custom image component that handles lazy loading and fallback rendering.

@@ -1,9 +1,8 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import React, { useEffect } from 'react';
-
 import { FaTimes } from 'react-icons/fa';
-import isBrowser from '../../helpers/isBrowser';
-import { cn } from './cn';
+import { isBrowser } from '../helpers/isBrowser';
+import { cn } from '../utility/cn';
 
 /**
  * ModalComponent is a reusable modal component that can be used to display content in a modal dialog.

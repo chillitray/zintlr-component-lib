@@ -338,6 +338,10 @@ export function get_formated_url(url: string): string;
 
 export function updatePlural(count: number, text: string, postfix?: string): string;
 
+export function getIP(request: any): string;
+
+export function verify_and_decrypt_jwt(token: string, secret: string): any;
+
 // ===============================
 // REQUEST HANDLERS
 // ===============================
@@ -371,3 +375,5 @@ export function withServerSideLogging<P extends object>(
 export function withInitialPropsLogging<P extends object>(
     Component: React.ComponentType<P>
 ): React.ComponentType<P>;
+
+export function BaseApiHandler(handler: any): any;

@@ -6,3 +6,6 @@ export * from './exports/helpers/index.js';
 
 // Export lib
 export * from './exports/logger/index.js';
+
+// Export utility
+export * from './exports/utility/index.js';

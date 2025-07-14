@@ -1,5 +1,5 @@
 import React from 'react';
-import { cn } from './cn';
+import { cn } from '../utility/cn';
 
 const sizeClasses = {
   small: 'w-4 h-4 border-[2px]',
@@ -20,8 +20,7 @@ const Loader = ({
         <div className="flex flex-col items-center">
           <div
             className={cn(
-              `${sizeClasses[size]} ${
-                variant === 'white' ? 'border-black border-t-white' : 'border-white border-t-black'
+              `${sizeClasses[size]} ${variant === 'white' ? 'border-black border-t-white' : 'border-white border-t-black'
               }   rounded-full animate-spin`,
               className
             )}

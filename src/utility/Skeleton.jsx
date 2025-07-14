@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './styles/skeleton_style.module.css';
+import style from '../style/skeleton_style.module.css';
 
 /**
  * A Skeleton component to represent a loading placeholder
