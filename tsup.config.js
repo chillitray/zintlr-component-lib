@@ -68,7 +68,7 @@ function handleExternalImports() {
     name: 'handle-external-imports',
     setup(build) {
       // Handle external dependencies
-      build.onResolve({ filter: /^(react|react-dom|sonner|xlsx|moment|next|axios|yup|jsonwebtoken|react-type-animation|react-switch)/ }, args => {
+      build.onResolve({ filter: /^(react|react-dom|react\/jsx-runtime|react\/jsx-dev-runtime|sonner|xlsx|moment|next|axios|yup|jsonwebtoken|react-type-animation|react-switch)/ }, args => {
         return { external: true, sideEffects: false }
       })
 
@@ -98,6 +98,8 @@ module.exports = defineConfig({
   external: [
     'react',
     'react-dom',
+    'react/jsx-runtime',
+    'react/jsx-dev-runtime',
     'sonner',
     'xlsx',
     'moment',
@@ -125,6 +127,7 @@ module.exports = defineConfig({
     options.jsx = 'transform';
     options.jsxFactory = 'React.createElement';
     options.jsxFragment = 'React.Fragment';
+    options.jsxImportSource = undefined; // Disable automatic JSX runtime
   },
   esbuildPlugins: [
     validateDependencies(),
