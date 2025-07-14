@@ -19,7 +19,11 @@ module.exports = {
     sourceType: 'module',
     requireConfigFile: false,
     babelOptions: {
-      presets: ['@babel/preset-react'],
+      presets: [
+        ['@babel/preset-react', {
+          runtime: 'classic'
+        }]
+      ],
     },
   },
   plugins: ['react', 'react-hooks'],
@@ -29,7 +33,7 @@ module.exports = {
     },
   },
   rules: {
-    'react/react-in-jsx-scope': 'off',
+    'react/react-in-jsx-scope': 'error',
     'react/prop-types': 'off',
   },
-}; 
+};
