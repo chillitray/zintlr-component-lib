@@ -1,6 +1,5 @@
 import React from 'react';
 import style from '../style/skeleton_style.module.css';
-
 /**
  * A Skeleton component to represent a loading placeholder
  * with customizable height and width.

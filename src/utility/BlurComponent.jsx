@@ -1,3 +1,5 @@
+import React from 'react';
+
 /**
  * This component creates a backdrop with a blurred
  * effect and centers its children within it.

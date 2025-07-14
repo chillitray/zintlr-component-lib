@@ -1,5 +1,5 @@
+import React, { useEffect, useMemo, useState } from 'react';
 import NextImage from 'next/image';
-import { useEffect, useMemo, useState } from 'react';
 import useNextBlurhash from 'use-next-blurhash';
 import { createImg } from '../helpers/create_img';
 

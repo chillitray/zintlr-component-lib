@@ -1,3 +1,5 @@
+import React from 'react';
+
 /**
  * This component represents a transparent loader that displays a spinning SVG animation when active.
  *

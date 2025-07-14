@@ -1,3 +1,4 @@
+import React from 'react';
 /**
  * This component represents a spinner icon that can be used to indicate loading or processing state in the UI.
  * size The size of the spinner in pixels.

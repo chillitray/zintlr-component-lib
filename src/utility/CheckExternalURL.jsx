@@ -1,3 +1,4 @@
+import React from 'react';
 import Link from 'next/link';
 import { get_formated_url } from '../helpers/get_formated_url';
 
