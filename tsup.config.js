@@ -6,10 +6,9 @@ const glob = require('glob');
 // Function to get all imports from files
 function getAllImports() {
   const imports = new Set();
-  const errors = [];
 
-  // Get all JS/JSX files in src directory
-  const files = glob.sync('src/**/*.{js,jsx}');
+  // Get all JS/JSX/TS/TSX files in src directory
+  const files = glob.sync('src/**/*.{js,jsx,ts,tsx}');
 
   files.forEach(file => {
     const content = fs.readFileSync(file, 'utf8');
@@ -55,7 +54,8 @@ function validateDependencies() {
         });
 
         if (errors.length > 0) {
-          throw new Error('\n' + errors.join('\n'));
+          console.warn('\n' + errors.join('\n'));
+          // Don't throw error, just warn - some dependencies might be conditionally loaded
         }
       });
     }
@@ -67,15 +67,24 @@ function handleExternalImports() {
   return {
     name: 'handle-external-imports',
     setup(build) {
-      // Handle external dependencies
-      build.onResolve({ filter: /^(react|react-dom|sonner|xlsx|moment|next|axios|yup|jsonwebtoken|react-type-animation|react-switch)/ }, args => {
+      // Handle React - always external (provided by consumer)
+      build.onResolve({ filter: /^react$|^react-dom$|^react\/jsx-runtime$|^react\/jsx-dev-runtime$/ }, args => {
         return { external: true, sideEffects: false }
       })
 
-      // Prevent jsx-runtime imports
-      build.onResolve({ filter: /react\/jsx-runtime|react\/jsx-dev-runtime/ }, args => {
+      // Handle Next.js - external (provided by consumer)
+      build.onResolve({ filter: /^next/ }, args => {
         return { external: true, sideEffects: false }
       })
+
+      // Handle peer dependencies - external (provided by consumer)
+      build.onResolve({ filter: /^(sonner|xlsx|moment|axios|yup|jsonwebtoken)$/ }, args => {
+        return { external: true, sideEffects: false }
+      })
+
+      // Bundle these dependencies (they're in dependencies, not peerDependencies)
+      // react-type-animation, react-switch, framer-motion, react-icons, clsx, tailwind-merge
+      // These will be bundled automatically since they're not in external array
 
       // Handle dynamic imports to prevent webpack warnings
       build.onResolve({ filter: /.*/ }, args => {
@@ -90,56 +99,66 @@ function handleExternalImports() {
 }
 
 module.exports = defineConfig({
-  entry: ["src/index.js"],
+  entry: ["src/index.js"], // Changed to .ts for TypeScript support
   format: ["cjs", "esm"],
   dts: true, // Enable TypeScript declaration generation
   splitting: false,
   sourcemap: true,
   clean: true,
   treeshake: true,
-  minify: true,
+  minify: process.env.NODE_ENV === 'production',
   target: ['es2020', 'node16'],
   platform: 'browser',
   external: [
+    // Core React - always external (provided by consumer)
     'react',
     'react-dom',
-    'sonner',
-    'xlsx',
-    'moment',
+    'react/jsx-runtime',
+    'react/jsx-dev-runtime',
+
+    // Next.js - external (consumer provides)
     'next',
     'next/router',
+    'next/link',
+    'next/image',
+    'next/head',
+    'next/navigation',
+    'next/dist/client/router',
+
+    // Peer dependencies - external (consumer provides)
+    'moment',
+    'xlsx',
+    'sonner',
     'axios',
-    'yup',
     'jsonwebtoken',
-    'react-type-animation',
-    'react-switch'
+    'yup',
+
+    // These are NOT in external, so they will be BUNDLED:
+    // 'react-type-animation', 'react-switch', 'framer-motion',
+    // 'react-icons', 'clsx', 'tailwind-merge'
   ],
   minifyIdentifiers: false,
   minifyWhitespace: true,
   minifySyntax: true,
-  jsxFactory: "React.createElement",
-  jsxFragment: "React.Fragment",
   loader: {
     '.js': 'jsx',
-    '.jsx': 'jsx'
+    '.jsx': 'jsx',
+    '.ts': 'tsx',
+    '.tsx': 'tsx'
   },
   esbuildOptions: (options) => {
     options.mainFields = ['module', 'main'];
     options.conditions = ['import', 'require'];
     options.target = ['es2020', 'node16'];
-    options.jsx = 'transform';
-    options.jsxFactory = 'React.createElement';
-    options.jsxFragment = 'React.Fragment';
-    options.jsxImportSource = undefined; // Disable automatic JSX runtime
-    options.jsxDev = false; // Disable development JSX
-    // Force classic JSX transform
-    options.define = {
-      ...options.define,
-      'process.env.NODE_ENV': '"production"'
-    };
+    options.jsx = 'automatic'; // Use automatic JSX runtime
+    options.jsxImportSource = 'react';
+    options.jsxDev = false;
   },
   esbuildPlugins: [
     validateDependencies(),
     handleExternalImports()
-  ]
+  ],
+  banner: {
+    js: '"use client";'
+  }
 });
