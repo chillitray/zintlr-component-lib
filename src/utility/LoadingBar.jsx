@@ -22,7 +22,6 @@ const LoadingBar = ({ text = '', isLoading = false }) => {
 
       return () => clearInterval(interval); // Cleanup the interval
     }
-    1;
   }, [isLoading]);
 
   return (

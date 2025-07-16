@@ -13,7 +13,7 @@ export function create_jwt(obj, secrete, options) {
 export function verify_and_decrypt_jwt(token, secret) {
   try {
     return jwt.verify(token, secret);
-  } catch (_) {
+  } catch (error) {
     // console.error('JWT verification error:', error.message);
     return null;
   }
@@ -39,7 +39,7 @@ export function getIP(request) {
       } else {
         ip = forwardedFor.split(',')?.[0];
       }
-    } catch (_) {
+    } catch (error) {
       ip = 'Unknown';
     }
   }

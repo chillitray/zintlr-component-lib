@@ -99,66 +99,48 @@ function handleExternalImports() {
 }
 
 module.exports = defineConfig({
-  entry: ["src/index.js"], // Changed to .ts for TypeScript support
-  format: ["cjs", "esm"],
+  entry: ["src/index.js"], // Entry point for the library
+  format: ["esm", "cjs"], // Output formats
   dts: true, // Enable TypeScript declaration generation
-  splitting: false,
-  sourcemap: true,
-  clean: true,
-  treeshake: true,
-  minify: process.env.NODE_ENV === 'production',
-  target: ['es2020', 'node16'],
-  platform: 'browser',
-  external: [
-    // Core React - always external (provided by consumer)
+  splitting: false, // Don't split the output
+  sourcemap: true, // Generate source maps
+  clean: true, // Clean the output directory
+  treeshake: true, // Remove unused code
+  minify: true, // Minify the output
+  target: ['es2020', 'node16'], // Target ES2020 and Node.js 16
+  platform: 'browser', // Target browser platform
+  external: [ // External dependencies that should not be bundled
     'react',
     'react-dom',
-    'react/jsx-runtime',
-    'react/jsx-dev-runtime',
-
-    // Next.js - external (consumer provides)
+    'sonner',
+    'xlsx',
+    'moment',
     'next',
     'next/router',
-    'next/link',
-    'next/image',
-    'next/head',
-    'next/navigation',
-    'next/dist/client/router',
-
-    // Peer dependencies - external (consumer provides)
-    'moment',
-    'xlsx',
-    'sonner',
     'axios',
-    'jsonwebtoken',
     'yup',
-
-    // These are NOT in external, so they will be BUNDLED:
-    // 'react-type-animation', 'react-switch', 'framer-motion',
-    // 'react-icons', 'clsx', 'tailwind-merge'
+    'jsonwebtoken'
   ],
-  minifyIdentifiers: false,
-  minifyWhitespace: true,
-  minifySyntax: true,
-  loader: {
+  jsx: 'automatic', // Supports JSX
+  minifyIdentifiers: false, // Don't minify identifiers
+  minifyWhitespace: true, // Minify whitespace
+  minifySyntax: true, // Minify syntax
+  loader: { // Loader for different file types
     '.js': 'jsx',
     '.jsx': 'jsx',
     '.ts': 'tsx',
     '.tsx': 'tsx'
   },
-  esbuildOptions: (options) => {
-    options.mainFields = ['module', 'main'];
-    options.conditions = ['import', 'require'];
-    options.target = ['es2020', 'node16'];
-    options.jsx = 'automatic'; // Use automatic JSX runtime
-    options.jsxImportSource = 'react';
-    options.jsxDev = false;
+  esbuildOptions: (options) => { // ESBuild options
+    options.mainFields = ['module', 'main']; // Main fields for module resolution
+    options.conditions = ['import', 'require']; // Conditions for module resolution
+    options.target = ['es2020', 'node16']; // Target ES2020 and Node.js 16
+    options.jsx = 'transform'; // JSX transform
+    options.jsxFactory = 'React.createElement'; // JSX factory function
+    options.jsxFragment = 'React.Fragment'; // JSX fragment function
   },
-  esbuildPlugins: [
-    validateDependencies(),
-    handleExternalImports()
-  ],
-  banner: {
-    js: '"use client";'
-  }
+  esbuildPlugins: [ // ESBuild plugins
+    validateDependencies(), // Validate dependencies
+    handleExternalImports() // Handle external imports
+  ]
 });

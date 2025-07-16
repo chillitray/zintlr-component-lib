@@ -1,10 +1,14 @@
 {
   "name": "zintlr-component-lib",
   "version": "4.0.0",
-  "description": "",
+  "description": "Internal component library for Zintlr apps (React + Tailwind + Next.js)",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -12,13 +16,6 @@
       "require": "./dist/index.js"
     }
   },
-  "files": [
-    "dist",
-    "src/**/*.tsx",
-    "src/**/*.ts",
-    "src/**/*.jsx",
-    "src/**/*.js"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/Sandeep-zintlr/zintlr-component-lib.git"
@@ -26,9 +23,9 @@
   "scripts": {
     "build": "node scripts/build.js",
     "dev": "tsup --watch",
-    "lint": "eslint 'src/**/*.{js,jsx}'",
-    "lint:fix": "eslint 'src/**/*.{js,jsx}' --fix",
-    "prettier": "prettier --write 'src/**/*.{js,jsx}'",
+    "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
+    "lint:fix": "eslint 'src/**/*.{js,jsx,ts,tsx}' --fix --ignore-pattern '**/*.d.ts'",
+    "prettier": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
     "prepare": "husky install",
     "clean": "rm -rf dist node_modules",
     "clean:dist": "rm -rf dist",
@@ -44,68 +41,49 @@
       "prettier --write"
     ]
   },
-  "keywords": [],
+  "keywords": [
+    "react",
+    "component-library",
+    "zintlr",
+    "tailwind",
+    "nextjs"
+  ],
   "author": "Zintlr Private Limited",
   "license": "ISC",
-  "dependencies": {
-    "react-type-animation": "^3.2.0",
-    "react-switch": "^7.1.0",
-    "framer-motion": "^12.16.0",
-    "react-icons": "^5.5.0",
-    "clsx": "^2.1.1",
-    "tailwind-merge": "^3.3.0"
-  },
   "peerDependencies": {
-    "react": ">=16.8.0",
-    "react-dom": ">=16.8.0",
-    "next": ">=12.0.0",
-    "moment": "^2.30.1",
-    "xlsx": "^0.18.5",
-    "sonner": "^1.0.0",
     "axios": "^0.27.2",
     "jsonwebtoken": "^8.5.1",
+    "moment": "^2.30.1",
+    "next": "^12.2.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sonner": "^1.0.0",
+    "xlsx": "^0.18.5",
     "yup": "^0.32.11"
-  },
-  "peerDependenciesMeta": {
-    "next": {
-      "optional": true
-    },
-    "moment": {
-      "optional": true
-    },
-    "xlsx": {
-      "optional": true
-    },
-    "sonner": {
-      "optional": true
-    },
-    "axios": {
-      "optional": true
-    },
-    "jsonwebtoken": {
-      "optional": true
-    },
-    "yup": {
-      "optional": true
-    }
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.24.1",
     "@babel/preset-react": "^7.27.1",
+    "@types/react": "^19.1.8",
+    "@typescript-eslint/eslint-plugin": "^8.37.0",
+    "@typescript-eslint/parser": "^8.37.0",
+    "clsx": "^2.1.1",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "framer-motion": "^12.16.0",
     "glob": "^11.0.2",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
-    "next": "^14.1.0",
     "prettier": "^3.2.5",
+    "react-icons": "^5.5.0",
+    "react-switch": "^7.1.0",
+    "react-type-animation": "^3.2.0",
+    "tailwind-merge": "^3.3.0",
     "tailwindcss": "^3.4.1",
     "tsup": "^8.5.0",
     "typescript": "^5.8.3",
-    "use-next-blurhash": "^1.0.5",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "use-next-blurhash": "^1.0.5"
   }
 }
