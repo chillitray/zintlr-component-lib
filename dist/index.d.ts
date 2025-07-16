@@ -5,7 +5,13 @@ import * as React from 'react';
 // ===============================
 
 export interface ToastWrapperProps {
-    position?: 'top-left' | 'top-center' | 'top-right' | 'bottom-left' | 'bottom-center' | 'bottom-right';
+    position?:
+    | 'top-left'
+    | 'top-center'
+    | 'top-right'
+    | 'bottom-left'
+    | 'bottom-center'
+    | 'bottom-right';
     expand?: boolean;
     richColors?: boolean;
     closeButton?: boolean;
@@ -286,7 +292,11 @@ export function readExcelCSV(file: File, callback?: (data: any[]) => void): void
 
 export function get_remaining_days(date_to_differ: Date, date?: Date): number;
 
-export function get_combined_location(location: { city?: string; state?: string; country?: string }): string;
+export function get_combined_location(location: {
+    city?: string;
+    state?: string;
+    country?: string;
+}): string;
 
 export function filter_string(string_to_match: string, query: string): boolean;
 

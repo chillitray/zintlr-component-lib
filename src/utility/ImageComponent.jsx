@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo, useState } from 'react';
 import NextImage from 'next/image';
+import { useEffect, useMemo, useState } from 'react';
 import useNextBlurhash from 'use-next-blurhash';
 import { createImg } from '../helpers/create_img';
 
@@ -33,7 +33,6 @@ function ImageComponent({
   objectFit = 'cover',
   objectPosition = 'center',
   bgColor = null,
-  blurEffect = true,
   onLoadingComplete = () => {},
 }) {
   // State to hold the image source URL.
@@ -53,9 +52,8 @@ function ImageComponent({
 
   // Set the blurhash data to the state for blurred image.
   useEffect(() => {
-    if (blurEffect) setData(data);
-    // eslint-disable-next-line
-  }, [blurEffect]);
+    setData(data);
+  }, [data]);
 
   // Load the image and handle fallbacks if loading fails.
   useEffect(() => {
@@ -80,13 +78,13 @@ function ImageComponent({
       width={width}
       height={height}
       alt={alt}
-      className={'select-none drag-none ' + className}
+      className={'select-none drag-none' + className}
       loading={!priority ? 'lazy' : 'eager'}
       objectFit={objectFit}
       objectPosition={objectPosition}
       layout={layout || 'intrinsic'}
-      placeholder={blurDataUrl ? 'blur' : ''}
-      blurDataURL={blurDataUrl ? blurDataUrl : ''}
+      placeholder={blurDataUrl ? 'blur' : undefined}
+      blurDataURL={blurDataUrl ? blurDataUrl : undefined}
       id={id}
       onClick={(e) => {
         onClick(e);
