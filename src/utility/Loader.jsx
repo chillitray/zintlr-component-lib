@@ -20,7 +20,8 @@ const Loader = ({
         <div className="flex flex-col items-center">
           <div
             className={cn(
-              `${sizeClasses[size]} ${variant === 'white' ? 'border-black border-t-white' : 'border-white border-t-black'
+              `${sizeClasses[size]} ${
+                variant === 'white' ? 'border-black border-t-white' : 'border-white border-t-black'
               }   rounded-full animate-spin`,
               className
             )}

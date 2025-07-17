@@ -28,13 +28,13 @@ function ImageComponent({
   className = '',
   id,
   layout,
-  onClick = () => { },
+  onClick = () => {},
   priority = false,
   objectFit = 'cover',
   objectPosition = 'center',
   bgColor = null,
   blurEffect = true,
-  onLoadingComplete = () => { },
+  onLoadingComplete = () => {},
 }) {
   // State to hold the image source URL.
   const [image, setImage] = useState(src);
