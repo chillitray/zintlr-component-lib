@@ -68,7 +68,7 @@ function handleExternalImports() {
     name: 'handle-external-imports',
     setup(build) {
       // Handle external dependencies
-      build.onResolve({ filter: /^(react|react-dom|sonner|xlsx|moment|next|axios|yup|jsonwebtoken)/ }, args => {
+      build.onResolve({ filter: /^(react|react-dom|sonner|xlsx|moment|next|axios|yup|jsonwebtoken|react\/jsx-runtime)/ }, args => {
         return { external: true, sideEffects: false }
       })
 
@@ -87,6 +87,7 @@ function handleExternalImports() {
 module.exports = defineConfig({
   entry: ["src/index.js"],
   format: ["cjs", "esm"],
+  dts: false,
   splitting: false,
   sourcemap: true,
   clean: true,
@@ -104,11 +105,13 @@ module.exports = defineConfig({
     'next/router',
     'axios',
     'yup',
-    'jsonwebtoken'
+    'jsonwebtoken',
+    'react/jsx-runtime'
   ],
   minifyIdentifiers: false,
   minifyWhitespace: true,
   minifySyntax: true,
+  jsx: 'react-jsx',
   jsxFactory: "React.createElement",
   jsxFragment: "React.Fragment",
   loader: {
@@ -119,12 +122,9 @@ module.exports = defineConfig({
     options.mainFields = ['module', 'main'];
     options.conditions = ['import', 'require'];
     options.target = ['es2020', 'node16'];
-    options.jsx = 'transform';
-    options.jsxFactory = 'React.createElement';
-    options.jsxFragment = 'React.Fragment';
   },
-  esbuildPlugins: [
-    validateDependencies(),
-    handleExternalImports()
-  ]
+  // esbuildPlugins: [
+  //   validateDependencies(),
+  //   handleExternalImports()
+  // ]
 });

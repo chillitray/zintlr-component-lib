@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "rootDir": "src",
+    "target": "es2020",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "isolatedModules": true,
+    "importHelpers": true,
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "declaration": true,
+    "declarationDir": "dist",
+    "noLib": false,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noImplicitUseStrict": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "removeComments": false,
+    "lib": [
+      "es2020",
+      "dom"
+    ],
+    "skipLibCheck": true,
+    "downlevelIteration": true,
+    "stripInternal": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "dist/types"
+  ]
+}

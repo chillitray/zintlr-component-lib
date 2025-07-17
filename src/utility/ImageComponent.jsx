@@ -1,7 +1,7 @@
 import NextImage from 'next/image';
 import { useEffect, useMemo, useState } from 'react';
 import useNextBlurhash from 'use-next-blurhash';
-import createImg from '../../helpers/create_img';
+import { createImg } from '../helpers/create_img';
 
 /**
  * ImageComponent is a custom image component that handles lazy loading and fallback rendering.
@@ -28,13 +28,13 @@ function ImageComponent({
   className = '',
   id,
   layout,
-  onClick = () => {},
+  onClick = () => { },
   priority = false,
   objectFit = 'cover',
   objectPosition = 'center',
   bgColor = null,
   blurEffect = true,
-  onLoadingComplete = () => {},
+  onLoadingComplete = () => { },
 }) {
   // State to hold the image source URL.
   const [image, setImage] = useState(src);

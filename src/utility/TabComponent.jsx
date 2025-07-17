@@ -1,5 +1,5 @@
 import React from 'react';
-import { cn } from './cn';
+import cn from './cn';
 
 /**
  * TabComponent is a reusable component that renders a list of tabs with buttons.

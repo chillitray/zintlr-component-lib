@@ -1,14 +1,21 @@
 {
   "name": "zintlr-component-lib",
-  "version": "3.0.0",
+  "version": "10.0.0",
   "description": "",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "files": [
-    "dist",
-    "src/**/*.jsx",
-    "src/**/*.js"
+    "dist"
   ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    },
+    "./package.json": "./package.json"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/Sandeep-zintlr/zintlr-component-lib.git"
@@ -37,23 +44,23 @@
   "keywords": [],
   "author": "Zintlr Private Limited",
   "license": "ISC",
-  "dependencies": {
+  "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "tailwindcss": "^3.4.1"
-  },
-  "peerDependencies": {
-    "moment": "^2.30.1",
-    "next": "^12.2.2",
-    "sonner": "^1.0.0",
-    "xlsx": "^0.18.5",
     "axios": "^0.27.2",
     "jsonwebtoken": "^8.5.1",
+    "moment": "^2.30.1",
+    "next": ">=12.2.2",
+    "sonner": "^1.0.0",
+    "xlsx": "^0.18.5",
     "yup": "^0.32.11"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.24.1",
     "@babel/preset-react": "^7.27.1",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "axios": "^0.27.2",
     "clsx": "^2.1.1",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
@@ -61,9 +68,8 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "framer-motion": "^12.16.0",
     "glob": "^11.0.2",
-    "axios": "^0.27.2",
-    "jsonwebtoken": "8.5.1",
     "husky": "^9.0.11",
+    "jsonwebtoken": "8.5.1",
     "lint-staged": "^15.2.2",
     "moment": "^2.30.1",
     "next": "^14.1.0",
@@ -76,6 +82,10 @@
     "tsup": "^8.5.0",
     "typescript": "^5.8.3",
     "use-next-blurhash": "^1.0.5",
-    "xlsx": "^0.18.5"
+    "xlsx": "^0.18.5",
+    "tailwindcss": "^3.4.1"
+  },
+  "engines": {
+    "node": ">=12"
   }
 }

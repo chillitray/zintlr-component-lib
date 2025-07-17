@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import isBrowser from '../../helpers/isBrowser';
+import { isBrowser } from '../helpers/isBrowser';
 import { TypeAnimation } from 'react-type-animation';
 
 const waitTime = 1000;
