@@ -9,6 +9,13 @@ import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 const packageJson = require("./package.json");
 
+const external = [
+  ...Object.keys(packageJson.dependencies || {}),
+  ...Object.keys(packageJson.peerDependencies || {}),
+  ...Object.keys(packageJson.optionalDependencies || {}),
+  "react/jsx-runtime",
+]
+
 export default [
   {
     input: "src/index.ts",
@@ -24,20 +31,23 @@ export default [
         sourcemap: true,
       },
     ],
+    external: ['react', 'react-dom', "react/jsx-runtime", "next"],
     plugins: [
       peerDepsExternal(),
       resolve(),
       commonjs(),
-      typescript({ tsconfig: "./tsconfig.json" }),
+      typescript({ tsconfig: "./tsconfig.json", module: "esnext" }),
       terser(),
-      postcss(),
+      postcss({
+        extract: true, // ensures index.css is output to dist/
+      })
     ],
-    external: ["react", "react-dom", "react/jsx-runtime", "next"],
+
   },
   {
     input: "src/index.ts",
     output: [{ file: packageJson.types }],
     plugins: [dts()],
-    external: [/\.css$/],
+    external: [/\.(css|less|scss)$/, ...external],
   },
 ];

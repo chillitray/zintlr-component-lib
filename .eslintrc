@@ -1,0 +1,44 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "useJSXTextNode": true
+    },
+    "plugins": [
+        "@typescript-eslint",
+        "react",
+        "react-hooks",
+        "import",
+        "react-compiler"
+    ],
+    "extends": [
+        "prettier"
+    ],
+    "rules": {
+        "@typescript-eslint/no-unused-vars": "warn",
+        "@typescript-eslint/type-annotation-spacing": "error",
+        "@typescript-eslint/consistent-type-definitions": [
+            "error",
+            "interface"
+        ],
+        "@typescript-eslint/explicit-module-boundary-types": "warn",
+        "react/jsx-pascal-case": "error",
+        "react-compiler/react-compiler": "warn",
+        // "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "warn",
+        "import/no-default-export": "error",
+        "prefer-arrow-callback": "warn",
+        "no-sequences": "error",
+        "no-eval": "error",
+        "no-return-await": "error",
+        "no-shadow": "error",
+        "no-throw-literal": "error",
+        "no-extra-bind": "error",
+        "no-var": "error",
+        "prefer-const": "error",
+        "eqeqeq": "error"
+    }
+}
