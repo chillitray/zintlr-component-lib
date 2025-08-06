@@ -1,6 +1,7 @@
 {
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
+        "ecmaVersion": 2020,
         "sourceType": "module",
         "ecmaFeatures": {
             "jsx": true
@@ -8,26 +9,18 @@
         "useJSXTextNode": true
     },
     "plugins": [
-        "@typescript-eslint",
         "react",
         "react-hooks",
         "import",
-        "react-compiler"
+        "react-compiler",
+        "@typescript-eslint"
     ],
     "extends": [
         "prettier"
     ],
     "rules": {
-        "@typescript-eslint/no-unused-vars": "warn",
-        "@typescript-eslint/type-annotation-spacing": "error",
-        "@typescript-eslint/consistent-type-definitions": [
-            "error",
-            "interface"
-        ],
-        "@typescript-eslint/explicit-module-boundary-types": "warn",
         "react/jsx-pascal-case": "error",
         "react-compiler/react-compiler": "warn",
-        // "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "warn",
         "import/no-default-export": "error",
         "prefer-arrow-callback": "warn",
@@ -39,6 +32,28 @@
         "no-extra-bind": "error",
         "no-var": "error",
         "prefer-const": "error",
-        "eqeqeq": "error"
-    }
+        "eqeqeq": "error",
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/no-unused-vars": [
+            "warn",
+            {
+                "argsIgnorePattern": "^_"
+            }
+        ]
+    },
+    "overrides": [
+        {
+            "files": [
+                "*.js",
+                "*.jsx"
+            ],
+            "rules": {
+                "@typescript-eslint/explicit-module-boundary-types": "off",
+                "@typescript-eslint/no-unused-vars": "off",
+                "@typescript-eslint/no-var-requires": "off",
+                "@typescript-eslint/explicit-function-return-type": "off",
+                "@typescript-eslint/explicit-parameter-types": "off"
+            }
+        }
+    ]
 }

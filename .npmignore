@@ -1,0 +1,83 @@
+# Source files (not needed in published package)
+src/
+*.js
+*.jsx
+*.ts
+*.tsx
+*.mjs
+*.cjs
+
+# Development files
+.eslintrc
+.eslintrc.js
+.eslintrc.json
+.prettierrc
+.prettierrc.js
+.prettierrc.json
+.editorconfig
+
+# Build configuration
+rollup.config.mjs
+tsconfig.json
+tailwind.config.js
+postcss.config.js
+babel.config.js
+webpack.config.js
+
+# Development dependencies and tools
+node_modules/
+.husky/
+.github/
+.vscode/
+.idea/
+
+# Testing
+coverage/
+.nyc_output/
+*.test.js
+*.test.jsx
+*.test.ts
+*.test.tsx
+*.spec.js
+*.spec.jsx
+*.spec.ts
+*.spec.tsx
+__tests__/
+test/
+tests/
+
+# Documentation
+docs/
+*.md
+!README.md
+
+# Git
+.git/
+.gitignore
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+.cache/

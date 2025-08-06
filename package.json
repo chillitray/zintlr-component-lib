@@ -1,18 +1,32 @@
 {
   "name": "zintlr-component-lib",
-  "version": "2.0.0",
+  "version": "4.0.0",
   "description": "Internal UI component library for Zintlr",
   "author": "Sandeep (Zintlr)",
   "license": "MIT",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.mjs.js",
   "types": "dist/index.d.ts",
   "keywords": [
     "react"
   ],
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "clean": "rm -rf dist node_modules",
+    "lint": "eslint src/**/*.{js,jsx}",
+    "lint:fix": "eslint src/**/*.{js,jsx} --fix"
+  },
+  "bin": {
+    "zintlr-component-lib": "./src/bin/index.js"
+  },
+  "files": [
+    "dist",
+    "bin",
+    "templates"
+  ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "require": "./dist/index.js",
       "import": "./dist/index.mjs"
     },
@@ -24,9 +38,15 @@
     "url": "git+ssh://git@github.com:sandeep-zintlr/zintlr-component-lib.git"
   },
   "peerDependencies": {
+    "axios": "^1.2.2",
+    "cookie": "^0.5.0",
+    "crypto": "^1.0.1",
+    "jsonwebtoken": "^9.0.0",
+    "next": ">=14.2.4",
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0",
-    "next": ">=14.2.4"
+    "sonner": ">=1.5.0",
+    "yup": "^1.0.0"
   },
   "peerDependenciesMeta": {
     "react": {
@@ -37,29 +57,38 @@
     }
   },
   "devDependencies": {
+    "@babel/core": "^7.28.0",
+    "@babel/preset-env": "^7.28.0",
+    "@babel/preset-react": "^7.27.1",
     "@rollup/plugin-alias": "^5.1.0",
+    "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-commonjs": "^24.1.0",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-replace": "^5.0.5",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^11.1.6",
     "@tailwindcss/postcss": "^4.1.11",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^18.6.3",
     "@types/react": "^18.3.23",
     "@types/react-dom": "^18.3.7",
     "@typescript-eslint/eslint-plugin": "^7.4.0",
     "@typescript-eslint/parser": "^7.4.0",
     "autoprefixer": "^10.4.20",
+    "axios": "^1.11.0",
+    "cookie": "^0.5.0",
+    "crypto": "^1.0.1",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-react": "^7.30.1",
     "eslint-plugin-react-compiler": "^19.0.0-beta-df7b47d-20241124",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "postcss": "^8.5.2",
-    "react-dev-utils": "^12.0.1",
+    "jsonwebtoken": "^9.0.2",
     "next": "14.2.4",
+    "postcss": "^8.5.2",
     "react": "^18.0.2",
+    "react-dev-utils": "^12.0.1",
     "react-dom": "^18.2.0",
     "rollup": "^3.29.5",
     "rollup-plugin-commonjs": "^10.1.0",
@@ -70,13 +99,8 @@
     "rollup-plugin-typescript2": "^0.34.1",
     "tailwindcss": "^4.0.6",
     "tslib": "^2.6.3",
-    "typescript": "^4.7.4"
-  },
-  "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
-    "lint": "eslint src/**/*.{ts,tsx}",
-    "lint:fix": "eslint src/**/*.{ts,tsx} --fix"
+    "typescript": "^4.7.4",
+    "yup": "^1.0.0"
   },
   "engines": {
     "node": ">=12"
