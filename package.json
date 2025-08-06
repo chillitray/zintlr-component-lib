@@ -1,6 +1,6 @@
 {
   "name": "zintlr-component-lib",
-  "version": "4.0.0",
+  "version": "1.0.0",
   "description": "Internal UI component library for Zintlr",
   "author": "Sandeep (Zintlr)",
   "license": "MIT",
