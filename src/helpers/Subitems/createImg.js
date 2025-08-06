@@ -57,9 +57,10 @@ const get_svg = (initials, imageColor = null) => {
   svg.setAttributeNS(null, 'fill', 'none');
   svg.setAttribute(
     'style',
-    `${imageColor
-      ? `background:${imageColor?.bgColor}`
-      : 'background-image: linear-gradient(180deg, #112634 0%, #000000 100%)'
+    `${
+      imageColor
+        ? `background:${imageColor?.bgColor}`
+        : 'background-image: linear-gradient(180deg, #112634 0%, #000000 100%)'
     };
 		background-repeat:no-repeat !important;
 		display: flex;
@@ -72,7 +73,8 @@ const get_svg = (initials, imageColor = null) => {
       y_margin = '55%';
     }
     svg.innerHTML = `
-			<text x="50%" y=${y_margin} fill="${imageColor?.textColor ?? 'white'
+			<text x="50%" y=${y_margin} fill="${
+        imageColor?.textColor ?? 'white'
       }" style="font-weight: 700; text-transform: uppercase; font-family: 'Roboto', sans-serif;"
 			dominant-baseline="middle"  text-anchor="middle" alignment-baseline="central" font-size="90">
 				${initials}
