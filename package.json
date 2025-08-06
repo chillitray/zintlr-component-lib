@@ -11,14 +11,20 @@
     "react"
   ],
   "scripts": {
-    "build": "rollup -c",
+    "build": "npm run clean:dist && rollup -c",
     "dev": "rollup -c -w",
     "clean": "rm -rf dist node_modules",
-    "lint": "eslint src/**/*.{js,jsx}",
-    "lint:fix": "eslint src/**/*.{js,jsx} --fix"
+    "clean:dist": "rm -rf dist",
+    "clean:modules": "rm -rf node_modules",
+    "lint": "eslint 'src/**/*.{js,jsx}'",
+    "lint:fix": "eslint 'src/**/*.{js,jsx}' --fix",
+    "prettier": "prettier --write 'src/**/*.{js,jsx}'",
+    "format": "npm run prettier && npm run lint:fix",
+    "prepare": "husky",
+    "build:package": "npm run clean:dist && node src/bin/build-script.js"
   },
   "bin": {
-    "zintlr-component-lib": "./src/bin/index.js"
+    "zintlr-component-lib": "./src/bin/sentry-script.js"
   },
   "files": [
     "dist",
@@ -84,9 +90,11 @@
     "eslint-plugin-react": "^7.30.1",
     "eslint-plugin-react-compiler": "^19.0.0-beta-df7b47d-20241124",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^9.1.7",
     "jsonwebtoken": "^9.0.2",
     "next": "14.2.4",
     "postcss": "^8.5.2",
+    "prettier": "^3.6.2",
     "react": "^18.0.2",
     "react-dev-utils": "^12.0.1",
     "react-dom": "^18.2.0",

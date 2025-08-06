@@ -1,7 +1,7 @@
-import { withGlobalLogging } from "./api-wrapper";
+import { withGlobalLogging } from './api-wrapper';
 
 export class BaseApiHandler {
-	static wrap(handler) {
-		return withGlobalLogging(handler);
-	}
+  static wrap(handler) {
+    return withGlobalLogging(handler);
+  }
 }

@@ -8,6 +8,3 @@ export * from './handlers/index';
 
 // Re-export toast for better TypeScript support
 export { toast };
-
-
-

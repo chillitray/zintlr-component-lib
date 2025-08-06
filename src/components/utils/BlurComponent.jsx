@@ -7,17 +7,23 @@
  * props.childClass - Additional CSS classes to be applied to the inner span element.
  * @returns {React.ReactNode}
  */
-function BlurComponent({ children, className = "", childClass = "", isBlur = false }) {
-	return (
-		<span
-			className={`${isBlur
-				? `justify-left flex  items-center bg-white/30  text-xl text-text-black blur-sm ${className}`
-				: ""
-				}`}
-		>
-			<span className={`text-center ${childClass}`}>{children}</span>
-		</span>
-	);
+function BlurComponent({
+  children,
+  className = '',
+  childClass = '',
+  isBlur = false,
+}) {
+  return (
+    <span
+      className={`${
+        isBlur
+          ? `justify-left flex  items-center bg-white/30  text-xl text-text-black blur-sm ${className}`
+          : ''
+      }`}
+    >
+      <span className={`text-center ${childClass}`}>{children}</span>
+    </span>
+  );
 }
 
 export { BlurComponent };

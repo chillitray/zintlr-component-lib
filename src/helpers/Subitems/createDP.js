@@ -1,4 +1,4 @@
-import isBrowser from "./isBrowser";
+import { isBrowser } from './isBrowser';
 
 /**
  * SVG image representing a default logo with placeholders for initials.
@@ -13,50 +13,52 @@ const logo_img = `
  * @param {string} initials - The initials to be displayed in the SVG image.
  * @returns {SVGElement} - The SVG image element with provided initials or the custom logo if no initials are provided.
  */
-const get_svg = (initials) => {
-	let xmlns = "http://www.w3.org/2000/svg";
-	let svg = document.createElementNS(xmlns, "svg");
-	svg.setAttributeNS(null, "width", "200");
-	svg.setAttributeNS(null, "height", "200");
-	svg.setAttributeNS(null, "fill", "none");
-	svg.setAttribute(
-		"style",
-		`background-image: linear-gradient(180deg, #112634 0%, #000000 100%);
+const get_svg = initials => {
+  const xmlns = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(xmlns, 'svg');
+  svg.setAttributeNS(null, 'width', '200');
+  svg.setAttributeNS(null, 'height', '200');
+  svg.setAttributeNS(null, 'fill', 'none');
+  svg.setAttribute(
+    'style',
+    `background-image: linear-gradient(180deg, #112634 0%, #000000 100%);
 		background-repeat:no-repeat !important;
 		display: flex;
 		align-items:center;`
-	);
-	if (initials) {
-		svg.innerHTML = `
+  );
+  if (initials) {
+    svg.innerHTML = `
 			<text x="50%" y="50%" fill="white" style="font-weight: 600; font-family:'Inter', text-transform: uppercase;"
 			dominant-baseline="middle"  text-anchor="middle" alignment-baseline="central" font-size="100">
 				${initials}
 			</text>
 		`;
-	} else {
-		svg.innerHTML = logo_img;
-	}
-	return svg;
+  } else {
+    svg.innerHTML = logo_img;
+  }
+  return svg;
 };
 /**
  * Function to extract initials from a name.
  * @param {string} name - The name from which initials will be extracted.
  * @returns {string} - The extracted initials in uppercase, or an empty string if the input name contains non-alphanumeric characters.
  */
-export const getInitials = (name) => {
-	//Check if the name is in english
-	const english = /^[A-Za-z0-9 ]*$/;
-	let initials;
-	//Replace the non alphanumeric characters in the name
-	name = name ? name.replace(/[^a-zA-Z0-9 ]/g, "") : "";
-	if (english.test(name)) {
-		name = name.trim();
-		let lname = name.split(" ");
-		initials =
-			lname[0].charAt(0) + "" + (lname.length > 1 ? lname[lname.length - 1].charAt(0) : "");
-		initials = String(initials).toUpperCase();
-	}
-	return initials;
+export const getInitials = name => {
+  //Check if the name is in english
+  const english = /^[A-Za-z0-9 ]*$/;
+  let initials;
+  //Replace the non alphanumeric characters in the name
+  name = name ? name.replace(/[^a-zA-Z0-9 ]/g, '') : '';
+  if (english.test(name)) {
+    name = name.trim();
+    const lname = name.split(' ');
+    initials =
+      lname[0].charAt(0) +
+      '' +
+      (lname.length > 1 ? lname[lname.length - 1].charAt(0) : '');
+    initials = String(initials).toUpperCase();
+  }
+  return initials;
 };
 
 /**
@@ -64,10 +66,10 @@ export const getInitials = (name) => {
  * @param {string} name - The name from which initials will be extracted to generate the SVG image.
  * @returns {SVGElement} - The SVG image element with provided initials or the custom logo if no initials are provided.
  */
-export const getInitialSvg = (name) => {
-	const initials = getInitials(name);
-	if (initials) return get_svg(initials);
-	return get_svg();
+export const getInitialSvg = name => {
+  const initials = getInitials(name);
+  if (initials) return get_svg(initials);
+  return get_svg();
 };
 
 /**
@@ -75,19 +77,19 @@ export const getInitialSvg = (name) => {
  * @param {string} name - The name from which initials will be extracted to generate the image.
  * @returns {string} - The base64-encoded SVG image data or an empty string if no name is provided or it's not a browser environment.
  */
-const createDP = (name) => {
-	// Check if a name is provided and the code is running in a browser environment.
-	if (name && isBrowser()) {
-		// Generate an SVG image element with initials based on the provided name.
-		let initials_img = getInitialSvg(name);
-		// Serialize the SVG element to a string.
-		var s = new XMLSerializer().serializeToString(initials_img);
-		// Encode the SVG string to base64.
-		var encodedData = window.btoa(s);
-		// Return the base64-encoded SVG image data.
-		return "data:image/svg+xml;base64," + encodedData;
-	}
-	// Return an empty string if no name is provided or it's not a browser environment.
-	return "";
-}
-export default createDP;
+const createDP = name => {
+  // Check if a name is provided and the code is running in a browser environment.
+  if (name && isBrowser()) {
+    // Generate an SVG image element with initials based on the provided name.
+    const initials_img = getInitialSvg(name);
+    // Serialize the SVG element to a string.
+    const s = new XMLSerializer().serializeToString(initials_img);
+    // Encode the SVG string to base64.
+    const encodedData = window.btoa(s);
+    // Return the base64-encoded SVG image data.
+    return 'data:image/svg+xml;base64,' + encodedData;
+  }
+  // Return an empty string if no name is provided or it's not a browser environment.
+  return '';
+};
+export { createDP };

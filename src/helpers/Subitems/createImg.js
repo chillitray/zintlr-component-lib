@@ -1,35 +1,34 @@
-import isBrowser from "./isBrowser.js";
-
+import { isBrowser } from './isBrowser.js';
 
 export const imageColors = {
-	faint_blue: {
-		bgColor: "#EFEFFF",
-		textColor: "black",
-	},
+  faint_blue: {
+    bgColor: '#EFEFFF',
+    textColor: 'black',
+  },
 };
 /**
  * This function will the user's browser using userAgent
  * @returns {string} Browser name
  */
 function fnBrowserDetect() {
-	let userAgent = navigator.userAgent;
-	let browserName;
+  const userAgent = navigator.userAgent;
+  let browserName;
 
-	if (userAgent.match(/chrome|chromium|crios/i)) {
-		browserName = "chrome";
-	} else if (userAgent.match(/firefox|fxios/i)) {
-		browserName = "firefox";
-	} else if (userAgent.match(/safari/i)) {
-		browserName = "safari";
-	} else if (userAgent.match(/opr\//i)) {
-		browserName = "opera";
-	} else if (userAgent.match(/edg/i)) {
-		browserName = "edge";
-	} else {
-		browserName = "No browser detection";
-	}
+  if (userAgent.match(/chrome|chromium|crios/i)) {
+    browserName = 'chrome';
+  } else if (userAgent.match(/firefox|fxios/i)) {
+    browserName = 'firefox';
+  } else if (userAgent.match(/safari/i)) {
+    browserName = 'safari';
+  } else if (userAgent.match(/opr\//i)) {
+    browserName = 'opera';
+  } else if (userAgent.match(/edg/i)) {
+    browserName = 'edge';
+  } else {
+    browserName = 'No browser detection';
+  }
 
-	return browserName;
+  return browserName;
 }
 
 /**
@@ -47,42 +46,42 @@ const logo_img = `
  * @returns {SVGElement} - The SVG image element with provided initials or the custom logo if no initials are provided.
  */
 const get_svg = (initials, imageColor = null) => {
-	if (typeof document === 'undefined') {
-		return null;
-	}
+  if (typeof document === 'undefined') {
+    return null;
+  }
 
-	let xmlns = "http://www.w3.org/2000/svg";
-	let svg = document.createElementNS(xmlns, "svg");
-	svg.setAttributeNS(null, "width", "200");
-	svg.setAttributeNS(null, "height", "200");
-	svg.setAttributeNS(null, "fill", "none");
-	svg.setAttribute(
-		"style",
-		`${imageColor
-			? `background:${imageColor?.bgColor}`
-			: "background-image: linear-gradient(180deg, #112634 0%, #000000 100%)"
-		};
+  const xmlns = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(xmlns, 'svg');
+  svg.setAttributeNS(null, 'width', '200');
+  svg.setAttributeNS(null, 'height', '200');
+  svg.setAttributeNS(null, 'fill', 'none');
+  svg.setAttribute(
+    'style',
+    `${imageColor
+      ? `background:${imageColor?.bgColor}`
+      : 'background-image: linear-gradient(180deg, #112634 0%, #000000 100%)'
+    };
 		background-repeat:no-repeat !important;
 		display: flex;
 		align-items:center;`
-	);
-	if (initials) {
-		let y_margin = "50%";
-		//In firefox, the margin issue is coming, to solve that
-		if (isBrowser() && fnBrowserDetect() === "firefox") {
-			y_margin = "55%";
-		}
-		svg.innerHTML = `
-			<text x="50%" y=${y_margin} fill="${imageColor?.textColor ?? "white"
-			}" style="font-weight: 700; text-transform: uppercase; font-family: 'Roboto', sans-serif;"
+  );
+  if (initials) {
+    let y_margin = '50%';
+    //In firefox, the margin issue is coming, to solve that
+    if (isBrowser() && fnBrowserDetect() === 'firefox') {
+      y_margin = '55%';
+    }
+    svg.innerHTML = `
+			<text x="50%" y=${y_margin} fill="${imageColor?.textColor ?? 'white'
+      }" style="font-weight: 700; text-transform: uppercase; font-family: 'Roboto', sans-serif;"
 			dominant-baseline="middle"  text-anchor="middle" alignment-baseline="central" font-size="90">
 				${initials}
 			</text>
 		`;
-	} else {
-		svg.innerHTML = logo_img;
-	}
-	return svg;
+  } else {
+    svg.innerHTML = logo_img;
+  }
+  return svg;
 };
 
 /**
@@ -90,21 +89,23 @@ const get_svg = (initials, imageColor = null) => {
  * @param {string} name - The name from which initials will be extracted.
  * @returns {string} - The extracted initials in uppercase, or an empty string if the input name contains non-alphanumeric characters.
  */
-export const getInitials = (_name) => {
-	let initials;
-	//Check if the name is in english
-	const english = /^[A-Za-z0-9 ]*$/;
-	//Replace the non alphanumeric characters in the name
-	_name = _name ? _name.replace(/[^a-zA-Z0-9 ]/g, "") : "";
-	if (english.test(_name)) {
-		let name = _name.trim().toUpperCase();
-		let lname = name.split(" ");
-		lname = lname.map((a) => a.trim());
-		initials =
-			lname[0].charAt(0) + "" + (lname.length > 1 ? lname[lname.length - 1].charAt(0) : "");
-		initials = String(initials).toUpperCase();
-	}
-	return initials;
+export const getInitials = _name => {
+  let initials;
+  //Check if the name is in english
+  const english = /^[A-Za-z0-9 ]*$/;
+  //Replace the non alphanumeric characters in the name
+  _name = _name ? _name.replace(/[^a-zA-Z0-9 ]/g, '') : '';
+  if (english.test(_name)) {
+    const name = _name.trim().toUpperCase();
+    let lname = name.split(' ');
+    lname = lname.map(a => a.trim());
+    initials =
+      lname[0].charAt(0) +
+      '' +
+      (lname.length > 1 ? lname[lname.length - 1].charAt(0) : '');
+    initials = String(initials).toUpperCase();
+  }
+  return initials;
 };
 
 /**
@@ -114,9 +115,9 @@ export const getInitials = (_name) => {
  * @returns {SVGElement} - The SVG image element with provided initials or the custom logo if no initials are provided.
  */
 export const getInitialsSvg = (_name, bgColor = null) => {
-	const initials = getInitials(_name);
-	const svg = initials ? get_svg(initials, bgColor) : get_svg();
-	return svg;
+  const initials = getInitials(_name);
+  const svg = initials ? get_svg(initials, bgColor) : get_svg();
+  return svg;
 };
 
 /**
@@ -126,26 +127,31 @@ export const getInitialsSvg = (_name, bgColor = null) => {
  * @returns {string} - The base64-encoded SVG image data or an empty string if no name is provided or it's not a browser environment.
  */
 const createImg = (name, bgColor = null) => {
-	// Check if a name is provided and the code is running in a browser environment.
-	if (name && isBrowser() && typeof document !== 'undefined' && typeof window !== 'undefined') {
-		try {
-			// Generate an SVG image element with initials based on the provided name.
-			let initials_img = getInitialsSvg(name, bgColor);
-			if (!initials_img) {
-				return "";
-			}
-			// Serialize the SVG element to a string.
-			var s = new XMLSerializer().serializeToString(initials_img);
-			// Encode the SVG string to base64.
-			var encodedData = window.btoa(s);
-			// Return the base64-encoded SVG image data.
-			return "data:image/svg+xml;base64," + encodedData;
-		} catch (error) {
-			console.warn('Error creating image:', error);
-			return "";
-		}
-	}
-	// Return an empty string if no name is provided or it's not a browser environment.
-	return "";
-}
-export default createImg;
+  // Check if a name is provided and the code is running in a browser environment.
+  if (
+    name &&
+    isBrowser() &&
+    typeof document !== 'undefined' &&
+    typeof window !== 'undefined'
+  ) {
+    try {
+      // Generate an SVG image element with initials based on the provided name.
+      const initials_img = getInitialsSvg(name, bgColor);
+      if (!initials_img) {
+        return '';
+      }
+      // Serialize the SVG element to a string.
+      const s = new XMLSerializer().serializeToString(initials_img);
+      // Encode the SVG string to base64.
+      const encodedData = window.btoa(s);
+      // Return the base64-encoded SVG image data.
+      return 'data:image/svg+xml;base64,' + encodedData;
+    } catch (error) {
+      console.warn('Error creating image:', error);
+      return '';
+    }
+  }
+  // Return an empty string if no name is provided or it's not a browser environment.
+  return '';
+};
+export { createImg };
