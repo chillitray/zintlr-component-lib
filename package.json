@@ -19,7 +19,7 @@
     "lint": "eslint 'src/**/*.{js,jsx}'",
     "lint:fix": "eslint 'src/**/*.{js,jsx}' --fix",
     "prettier": "prettier --write 'src/**/*.{js,jsx}'",
-    "format": "npm run prettier && npm run lint:fix",
+    "prent": "npm run prettier && npm run lint:fix",
     "prepare": "husky",
     "build:package": "npm run clean:dist && node src/bin/build-script.js"
   },
