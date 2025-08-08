@@ -44,7 +44,7 @@
     "url": "git+ssh://git@github.com:sandeep-zintlr/zintlr-component-lib.git"
   },
   "peerDependencies": {
-    "axios": "^1.2.2",
+    "axios": ">=0.27.2",
     "cookie": "^0.5.0",
     "crypto": "^1.0.1",
     "jsonwebtoken": "^9.0.0",
