@@ -51,6 +51,12 @@ export function serverRequestHandler({
     return;
   }
 
+  let logger = console;
+
+  if (req?.logger) {
+    logger = req.logger;
+  }
+
   data = {
     ...req.body,
     ...data,
