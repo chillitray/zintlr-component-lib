@@ -145,9 +145,13 @@ export function serverRequestHandler({
     logFn(options);
   }
 
+  logger.log('Requesting With Options', options);
+
   return axios
     .request(options)
     .then(result => {
+      logger.log('RESPONSE: Server req caller response', result.data);
+
       if (result?.data?.success) {
         //Cache for get requests
         if (method === 'get') {
@@ -165,6 +169,8 @@ export function serverRequestHandler({
     })
     .catch(error => {
       let err = error?.response?.data || { ...ErrorObject };
+
+      logger.error('RESPONSE ERROR: Server req caller error', err);
 
       if (logFn) {
         logFn('================================================');
