@@ -95,11 +95,14 @@ declare function HTMLContent({ html, className }: {
     className?: string | undefined;
 }): react_jsx_runtime.JSX.Element;
 
-declare function Skeleton({ className, h, w }: {
-    className: any;
-    h?: string | undefined;
-    w?: string | undefined;
-}): react_jsx_runtime.JSX.Element;
+/**
+ * A Skeleton component to represent a loading placeholder with customizable height and width.
+ * @param {string} className Additional classes to be applied to the skeleton container.
+ * @param {string} h Height of the skeleton. Default value is "2".
+ * @param {string} w Width of the skeleton. Default value is "3/4".
+ * @returns {React.ReactNode} A React node representing the skeleton placeholder.
+ */
+declare function Skeleton({ className, h, w }: string): React.ReactNode;
 
 /**
  * This component represents a spinner icon that can be used to indicate loading or processing state in the UI.
