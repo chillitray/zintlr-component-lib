@@ -6,7 +6,7 @@ import { isBrowser } from './isBrowser';
  * This custom hook tracks the window size and updates the state with the current width and height.
  * @returns {Object} An object containing the width and height of the window.
  */
-function useWindowSize() {
+const useWindowSize = () => {
   // State to hold the current window size
   const [windowSize, setWindowSize] = useState({
     width: undefined,
@@ -38,5 +38,6 @@ function useWindowSize() {
 
   // Return the current window size
   return windowSize;
-}
+};
+
 export { useWindowSize };

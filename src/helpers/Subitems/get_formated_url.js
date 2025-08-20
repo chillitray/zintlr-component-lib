@@ -3,7 +3,7 @@
  * @param {string} url The URL that needs to be formatted.
  * @returns {string} The formatted URL starting with "https://".
  */
-function get_formated_url(url) {
+const get_formated_url = url => {
   // Check if the URL is not provided (empty or null)
   if (!url) {
     // If URL is not provided, return an empty string
@@ -16,5 +16,5 @@ function get_formated_url(url) {
   }
   // If URL starts with "http", return the URL as it is
   return url;
-}
+};
 export { get_formated_url };
