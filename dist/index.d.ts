@@ -95,6 +95,23 @@ declare function HTMLContent({ html, className }: {
     className?: string | undefined;
 }): react_jsx_runtime.JSX.Element;
 
+declare function Skeleton({ className, h, w }: {
+    className: any;
+    h?: string | undefined;
+    w?: string | undefined;
+}): react_jsx_runtime.JSX.Element;
+
+/**
+ * This component represents a spinner icon that can be used to indicate loading or processing state in the UI.
+ * size The size of the spinner in pixels.
+ * colorClass A CSS class that defines the color of the spinner.
+ * It returnsReturns a React node representing the spinner SVG.
+ */
+declare function Spinner({ size, colorClass }: {
+    size: any;
+    colorClass: any;
+}): react_jsx_runtime.JSX.Element;
+
 declare function ToastWrapper({ ToasterProps }: {
     ToasterProps: any;
 }): react_jsx_runtime.JSX.Element;
@@ -123,6 +140,38 @@ declare function createImg(name: string, bgColor?: string | null): string;
  * @returns {string} - The base64-encoded SVG image data or an empty string if no name is provided or it's not a browser environment.
  */
 declare function createDP(name: string): string;
+
+/**
+ * Scrolls to the element with the specified 'id'.
+ * @param {string} id - The id of the element to scroll to.
+ */
+declare function scrollById(id: string): void;
+/**
+ * Scrolls to the element indicated by the 'href' attribute of the event target.
+ * @param {Event} e - The event triggered when calling the function.
+ */
+declare function scrollTo(e: Event): void;
+
+/**
+ * To get width and height of the screen, use this hook
+ * This custom hook tracks the window size and updates the state with the current width and height.
+ * @returns {Object} An object containing the width and height of the window.
+ */
+declare function useWindowSize(): Object;
+
+/**
+ * This function is used to retrieve the value of a specific cookie by its name from the document's cookies.
+ * @param {string} name The name of the cookie whose value is to be retrieved.
+ * @returns {string} The value of the specified cookie if found, otherwise an empty string.
+ */
+declare function getCookieValue(name: string): string;
+
+/**
+ * This function takes a URL and formats it to ensure it starts with "https://". If the URL is not provided or does not start with "http", it will be prefixed with "https://" before returning.
+ * @param {string} url The URL that needs to be formatted.
+ * @returns {string} The formatted URL starting with "https://".
+ */
+declare function get_formated_url(url: string): string;
 
 /**
  * TODO Better documentation & Error handling
@@ -187,4 +236,4 @@ declare function verify_and_decrypt_jwt(token: any, secret: any): string | jwt.J
  */
 declare function getIP(request: Object): string;
 
-export { BaseApiHandler, BlurComponent, Button, HTMLContent, ImageComponent, LandingImageComponent, ToastWrapper, createDP, createImg, getAllValidationSchemas, getIP, getValidationSchema, isBrowser, isValidationConfigInitialized, request_caller, resetValidationConfig, serverRequestHandler, setValidationConfig, verify_and_decrypt_jwt, withGlobalLogging, withPageLogging };
+export { BaseApiHandler, BlurComponent, Button, HTMLContent, ImageComponent, LandingImageComponent, Skeleton, Spinner, ToastWrapper, createDP, createImg, getAllValidationSchemas, getCookieValue, getIP, getValidationSchema, get_formated_url, isBrowser, isValidationConfigInitialized, request_caller, resetValidationConfig, scrollById, scrollTo, serverRequestHandler, setValidationConfig, useWindowSize, verify_and_decrypt_jwt, withGlobalLogging, withPageLogging };
